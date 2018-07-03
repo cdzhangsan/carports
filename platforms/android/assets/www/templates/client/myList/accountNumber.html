@@ -1,0 +1,55 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ui-sref="mySet">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">收支账号</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" scroll="false">
+    <div class="accountNumber">
+      <div class="accountCard">
+        <header>
+          <aside>
+            <img src="img/zhifubaoIcon.png" alt="">
+            <p>支付宝收支账号</p>
+          </aside>
+          <aside ng-click="compilAccount($event,'zhifubao','{{account}}')">
+            <img src="img/compile.png" alt="">
+            <p>编辑</p>
+          </aside>
+        </header>
+        <div class="content">
+          <h3 ng-if="true">{{zhifubaoAccount}}</h3>
+          <button type="button" ng-click="addAccount($event,'zhifubao')" ng-if="false">+添加账号</button>
+        </div>
+      </div>
+      <div class="accountCard" id="weixinCard">
+        <header>
+          <aside>
+            <img src="img/weixinIcon.png" alt="">
+            <p>微信收支账号</p>
+          </aside>
+          <aside ng-click="compilAccount($event,'weixin','{{account}}')">
+            <img src="img/compile.png" alt="">
+            <p>编辑</p>
+          </aside>
+        </header>
+        <div class="content">
+          <h3 ng-if="false">{{weixinAccount}}</h3>
+          <button type="button" ng-click="addAccount($event,'weixin')" ng-if="true">+添加账号</button>
+        </div>
+      </div>
+    </div>  
+  </ion-content>
+</ion-view>
+<script id="popover" type="text/ng-template">
+  <ion-popover-view>
+    <div style="top:0" class="alerBg" ng-click="closePopover()"></div>
+    <div class="getCode" id="accountAlert">
+      <h2>{{accountType}}账号</h2>
+      <input type="tel" placeholder="{{oldNum}}">
+      <button type="button" ng-click="accountSure()">确认</button>
+    </div>
+    </div>
+</ion-popover-view>
+</script> 

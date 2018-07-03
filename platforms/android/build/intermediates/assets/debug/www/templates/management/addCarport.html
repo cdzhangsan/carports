@@ -1,0 +1,142 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="carportMan">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">{{carportTitle}}</h2>
+    <button style="color:#fff" ng-click="subCarport()" class="bindCar" type="submit">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <form id="addpark" class="companyMess" method="post" name="adduserForm" novalidate>
+      <ul>
+        <li>
+          <h3>车位类型</h3>
+          <button type="button" ng-click="choiceOwntype($event)">{{OwnType}}</button>
+        </li>
+        <li>
+          <h3>车位编号</h3>
+          <input type="text" ng-value="carport.slotid" ng-model="carport.slotid" placeholder="车位编号(必填)" required>
+        </li>
+        <li>
+          <h3>充电停车费折扣</h3>
+          <input type="text" style="width:3rem" ng-value="carport.chgdiscount" ng-model="carport.chgdiscount" placeholder="充电停车费折扣">
+        </li>
+        <li>
+          <h3>打折最低电度</h3>
+          <input type="text" ng-value="carport.chgfloor" ng-model="carport.chgfloor" placeholder="打折最低电度">
+        </li>
+        <li>
+          <h3>是否有效</h3>
+          <button type="button" ng-click="choicecan($event)">{{valid}}</button>
+        </li>
+        <!-- <li>
+          <h3>导航图链接</h3>
+          <input type="text" ng-value="carport.routepic1" ng-model="carport.routepic1" placeholder="导航图链接">
+        </li> -->
+        <li class="getTimeParent">
+          <h3>开始时间</h3>
+          <div class="getTime">
+            <input id="carportStartTime" type="text" name="input_date" placeholder="{{selectStartTime}}" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+            <img class="time" src="img/pullDoen.png" alt="">
+          </div>
+        </li>
+        <li class="getTimeParent">
+          <h3>结束时间</h3>
+          <div class="getTime">
+            <input id="carportEndTime" type="text" name="input_date" placeholder="{{selectEndTime}}" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+            <img class="time" src="img/pullDoen.png" alt="">
+          </div>
+        </li>
+        <li>
+          <h3>免费时间</h3>
+          <input type="text" ng-value="carport.freetime" ng-model="carport.freetime" placeholder="免费时间(分钟)">
+        </li>
+        <li>
+          <h3>起步收费时间</h3>
+          <input type="text" ng-value="carport.basetime" ng-model="carport.basetime" placeholder="起步收费时间(分钟)">
+        </li>
+        <li>
+          <h3>起步收费</h3>
+          <input type="text" ng-value="carport.basefee" ng-model="carport.basefee" placeholder="起步收费(元/分钟)">
+        </li>
+        <li>
+          <h3>正常收费</h3>
+          <input type="text" ng-value="carport.normalfee" ng-model="carport.normalfee" placeholder="正常收费(元/分钟)">
+        </li>
+        <li>
+          <h3>收费上限</h3>
+          <input type="text" ng-value="carport.totallimit" ng-model="carport.totallimit" placeholder="收费上限(元)">
+        </li>
+        <li>
+          <h3>最低收费标准</h3>
+          <input type="text" ng-value="carport.feefloor" ng-model="carport.feefloor" placeholder="最低收费标准(元/分钟)">
+        </li>
+        <li style="height: {{carportHeight}}rem" class="carPicture">
+          <h3>车位照片</h3>
+          <div>
+            <img ng-src="{{img}}" ng-repeat="img in carportImgs track by $index" on-hold="deletps(img,$index,'carport')" ng-click="getBig($event,$index,'carport')">
+            <button type="button" ng-if="carportShow" ng-click="gotoCarme('carport')">
+              <img style="margin:0" src="img/addpicture.png">
+            </button>
+          </div>
+        </li>
+        <li style="height: {{carportHeight}}rem" class="carPicture">
+          <h3>产权证照片</h3>
+          <div>
+            <img ng-src="{{img}}" ng-repeat="img in deedImgs track by $index" on-hold="deletps(img,$index,'deed')" ng-click="getBig($event,$index,'deed')">
+            <button type="button" ng-if="deedShow" ng-click="gotoCarme('deed')">
+              <img style="margin:0" src="img/addpicture.png">
+            </button>
+          </div>
+        </li>
+        <li ng-if="!add" class="delet">
+          <button type="button" ng-click="deletCarport()">删除车位</button>
+        </li>
+      </ul>
+    </form>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="ownTypePopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closeOwntype()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead" style="background: #fff;">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="sureOwntype(owntype)" ng-repeat="owntype in owntypes">
+            <input name="radio-group" ng-value="owntype" ng-model="owntype" type="radio" />
+            <span class="leader">
+               {{owntype.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+<script id="popover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closecan()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead" style="background: #fff;">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="surecan(valid)" ng-repeat="valid in valids">
+            <input name="radio-group" ng-value="valid" ng-model="valid" type="radio" />
+            <span class="leader">
+               {{valid.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+<script id="bigimg" type="text/ng-template">
+<ion-popover-view>
+  <div id="bigImg" ng-click="closebigimg()">
+    <img src="{{Bimg}}"/>
+  </div>
+</ion-popover-view>
+</script>

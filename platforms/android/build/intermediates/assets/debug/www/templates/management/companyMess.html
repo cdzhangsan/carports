@@ -1,0 +1,101 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="companyManagement">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">{{companyTitle}}</h2>
+    <button style="color:#fff" class="bindCar" type="submit" ng-click="addCompany()">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <form class="companyMess" method="post" name="addCompanyForm" novalidate>
+      <ul>
+        <li class="title">
+          <input type="text" ng-value="compeny.name" ng-model="compeny.name" placeholder="输入公司名称(必填)" required>
+        </li>
+        <li>
+          <h3>公司税号</h3>
+          <input type="text" ng-value="compeny.taxID" ng-model="compeny.taxID" placeholder="输入公司税号(必填)" require>
+        </li>
+        <li>
+          <h3>公司类型</h3>
+          <button type="button" ng-click="choiceUser($event)">{{userType}}</button>
+        </li>
+        <li>
+          <h3>支付宝账号</h3>
+          <input type="text" ng-value="compeny.alipay" ng-model="compeny.alipay" placeholder="输入支付宝账号" require>
+        </li>
+        <li>
+          <h3>微信账号</h3>
+          <input type="text" ng-value="compeny.wechat" ng-model="compeny.wechat" placeholder="输入微信账号" require>
+        </li>
+        <li>
+          <h3>电话号码</h3>
+          <input type="tel" ng-value="compeny.phone" ng-model="compeny.phone" placeholder="输入电话号码(必填)" require>
+        </li>
+        <li>
+          <h3>手机号码</h3>
+          <input type="tel" ng-value="compeny.mobile" ng-model="compeny.mobile" placeholder="输入手机号码">
+        </li>
+        <li>
+          <h3>电子邮箱</h3>
+          <input type="email" ng-value="compeny.email" ng-model="compeny.email" placeholder="输入电子邮箱(必填)" require>
+        </li>
+        <li class="select">
+          <h3>省&nbsp;市&nbsp;区</h3>
+          <a type="button" class="form-item item-line" id="select_contact">
+            <span data-city-code="{{adreIds.city}}" data-province-code="{{adreIds.pro}}" data-district-code="{{adreIds.dist}}" id="show_contact">{{seletadress}}</span>
+            <img src="img/pullDoen.png" alt="">
+          </a>
+        </li>
+        <li>
+          <h3>具体地址</h3>
+          <input type="text" ng-value="detail.address" ng-model="detail.address" placeholder="输入具体地址(必填)" require>
+        </li>
+        <!-- <li>
+          <h3>管理员账号</h3>
+          <input type="text" ng-value="compeny.master" ng-model="compeny.master" placeholder="输入管理员账号(必填)" require>
+        </li> -->
+        <!-- <li  ng-if="!add" class="delet">
+          <button type="button">删除公司</button>
+        </li> -->
+      </ul>
+    </form>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="userPopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closeuserPopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="sureuserPopover(option)" ng-repeat="option in options">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio"/>
+            <span class="leader">
+               {{option.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+<script id="payTypePopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closePaytype()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="surePaytype(paytype)" ng-repeat="paytype in paytypes">
+            <input name="radio-group" ng-value="paytype" ng-model="paytype" type="radio"/>
+            <span class="leader">
+               {{paytype.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

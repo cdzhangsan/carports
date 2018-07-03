@@ -1,0 +1,29 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ui-sref="app.sharePark">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">发表评价</h2>
+    <button class="bindCar" ng-click="subEva()" style="color: #ff8800" type="button">
+      发布
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="eval">
+      <div>
+        <h2>描述相符</h2>
+        <div class="evapic">
+          <ul class="my-stars-list">
+            <li class="my-stars-items" ng-click="stars(myStar)" ng-class="{myStarsSel: clickCnt > $index , myStarHover: hoverCnt > $index }" ng-repeat="myStar in myStars track by $index"></li>
+          </ul>
+          <p>{{evaVul}}</p>
+        </div>
+      </div>
+      <div class="evamess">
+        <h2>具体描述</h2>
+        <textarea ng-model="evaluate.comment" placeholder="请输入您对此次订单的评价......"></textarea>
+      </div>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

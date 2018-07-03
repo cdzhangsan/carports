@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\DR\carports\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5e29e17feb5c194b0eee3cc76938b82472faee51">
+        <dex dex="C:\Users\DR\carports\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-unspecified-debug_82d6f19c0806deb596a528c1c3b8317ca7d6d700.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\DR\carports\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="C:\Users\DR\carports\platforms\android\build\intermediates\pre-dexed\debug\internal_impl-24.1.1_3bdc1cd03ee750f4986204b3cda9fb92b303873d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\DR\carports\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="C:\Users\DR\carports\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.1_3b7777a702c4b101067807f27a7ebeeebae683c1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Program Files\SDK\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="C:\Users\DR\carports\platforms\android\build\intermediates\pre-dexed\debug\support-annotations-24.1.1_f9e88ce9d4ccd8afe1291bd4d5603c630b1e85be.jar" />
+    </item>
+
+</items>

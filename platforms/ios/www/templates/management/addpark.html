@@ -1,0 +1,149 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="parkMan">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">{{parkTitle}}</h2>
+    <button style="color:#fff" ng-click="subPark()" class="bindCar" type="submit">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <form id="addpark" class="companyMess" method="post" name="adduserForm" novalidate>
+      <ul>
+        <li class="title">
+          <input type="text" style="width: 100%" ng-value="park.name" ng-model="park.name" placeholder="输入停车场名称(必填)" required>
+        </li>
+        <li ng-click="openModal()">
+          <h3>停车场经纬度</h3>
+          <div id="lngLat">
+            <button type="button">{{parkloc}}</button>
+            <img class="goto" src="img/goto.png" alt="">
+          </div>
+        </li>
+        <li>
+          <h3>支付宝账号</h3>
+          <input type="text" ng-value="park.alipay" ng-model="park.alipay" placeholder="输入支付宝账号" require>
+        </li>
+        <li>
+          <h3>微信账号</h3>
+          <input type="text" ng-value="park.wechat" ng-model="park.wechat" placeholder="输入微信账号" require>
+        </li>
+        <li>
+          <h3>电话</h3>
+          <input type="tel" ng-value="park.phone" ng-model="park.phone" placeholder="电话(必填)" required>
+        </li>
+        <li>
+          <h3>手机号码</h3>
+          <input type="tel" ng-value="park.mobile" ng-model="park.mobile" placeholder="手机号码">
+        </li>
+        <li>
+          <h3>电子邮箱</h3>
+          <input type="email" ng-value="park.email" ng-model="park.email" placeholder="电子邮箱(必填)" required>
+        </li>
+        <li class="select">
+          <h3>地址</h3>
+          <a type="button" class="form-item item-line" id="select_contact">
+            <span data-city-code="{{adreIds.city}}" data-province-code="{{adreIds.pro}}" data-district-code="{{adreIds.dist}}" id="show_contact">{{seletadress}}</span>
+            <img src="img/pullDoen.png" alt="">
+          </a>
+        </li>
+        <li>
+          <h3>具体位置</h3>
+          <input type="text" ng-value="detail.address" ng-model="detail.address" placeholder="具体位置(必填)" required>
+        </li>
+        <!-- <li>
+          <h3>管理员账号</h3>
+          <input type="text" ng-value="park.master" ng-model="park.master" placeholder="管理员账号(必填)" required>
+        </li> -->
+        <li>
+          <h3>室外车位数</h3>
+          <input type="text" ng-value="park.oslotnum" ng-model="park.oslotnum" placeholder="室外车位数">
+        </li>
+        <li>
+          <h3>室内车位数</h3>
+          <input class="lgInput" type="text" ng-value="park.islotnum" ng-model="park.islotnum" placeholder="室内车位数">
+        </li>
+        <li>
+          <h3>室外起始车位号</h3>
+          <input class="lgInput" type="text" ng-value="park.oslotbegin" ng-model="park.oslotbegin" placeholder="室外起始车位号">
+        </li>
+        <li>
+          <h3>室外终止车位号</h3>
+          <input class="lgInput" type="text" ng-value="park.oslotend" ng-model="park.oslotend" placeholder="室外终止车位号">
+        </li>
+        <li>
+          <h3>室内起始车位号</h3>
+          <input class="lgInput" type="text" ng-value="park.islotbegin" ng-model="park.islotbegin" placeholder="室内起始车位号">
+        </li>
+        <li>
+          <h3>室内终止车位号</h3>
+          <input class="lgInput" type="text" ng-value="park.islotend" ng-model="park.islotend" placeholder="室内终止车位号">
+        </li>
+        <!-- <li ng-if="!add" class="delet">
+          <button type="button">删除停车场</button>
+        </li> -->
+      </ul>
+    </form>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<get-location></get-location>
+<script id="payTypePopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closePaytype()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead" style="background: #fff;">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="surePaytype(paytype)" ng-repeat="paytype in paytypes">
+            <input name="radio-group" ng-value="paytype" ng-model="paytype" type="radio" />
+            <span class="leader">
+               {{paytype.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+<script id="modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-view class="searchPark">
+      <ion-header-bar align-title="center">
+        <button class="button" type="button" ng-click="closeModal()">
+          <img src="img/back.png">
+        </button>
+        <h2 class="title">选择车位位置</h2>
+        <button class="bindCar" type="button" ng-click="sureAddress()">
+          确定
+        </button>
+      </ion-header-bar>
+      <ion-content scroll="false">
+        <div class="selectSpace">
+          <header>
+            <div>
+              <div class="left">
+                <img src="img/searchwe.png" alt="">
+                <input type="text" ng-model="searchKey.value" placeholder="查找位置">
+              </div>
+              <button type="button" ng-click="getSpace()">搜索</button>
+            </div>
+          </header>
+          <div id="smallMap"></div>
+          <button type="button" class="examine" ng-click="getUserLocation()">
+            <img src="img/examine.png">
+          </button>
+          <span></span>
+          <ion-scroll id="resultContainer" scrollbar-y="false" zooming="false">
+            <ul id="resultCont">
+              <li ng-repeat="item in searchData" ng-click="toaddress({{item}})">
+                <h2>{{item.name}}</h2>
+                <p>{{item.address}}</p>
+              </li>
+            </ul>
+          </ion-scroll>
+        </div>
+      </ion-content>
+    </ion-view>
+  </ion-modal-view>
+</script>

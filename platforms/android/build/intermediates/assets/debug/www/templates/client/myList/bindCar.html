@@ -1,0 +1,104 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="myCar">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">{{carTitle}}</h2>
+  </ion-header-bar>
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="myCar">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">{{carTitle}}</h2>
+    <button class="bindCar" ng-if="deletBtn" type="button" ng-click="deletCar()">
+      删除车辆
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="bindCars">
+      <form ng-submit="toBIndCar(carForm)" name="carForm" novalidate>
+        <header>
+          <h3>请输入您的车牌号</h3>
+          <div>
+            <input type="text" ng-value="carCode.one" ng-model="carCode.one" minlength="1" maxlength="1" placeholder="京" required >
+            <input type="text" ng-value="carCode.two" ng-model="carCode.two" minlength="1" maxlength="1" placeholder="*" required>
+            <input type="text" ng-value="carCode.third" ng-model="carCode.third" minlength="1" maxlength="1" placeholder="*" required>
+            <input type="text" ng-value="carCode.four" ng-model="carCode.four" minlength="1" maxlength="1" placeholder="*" required>
+            <input type="text" ng-value="carCode.five" ng-model="carCode.five" minlength="1" maxlength="1" placeholder="*" required>
+            <input type="text" ng-value="carCode.six" ng-model="carCode.six" minlength="1" maxlength="1" placeholder="*" required>
+            <input type="text" ng-value="carCode.seven" ng-model="carCode.seven" minlength="1" maxlength="1" placeholder="*" required>
+          </div>
+        </header>
+        <div class="content">
+          <ul>
+            <li>
+              <img src="img/bindcar1.png" alt="">
+              <div>
+                <h3>车辆品牌</h3>
+                <input type="text" ng-value="bindCar.brand" ng-model="bindCar.brand" placeholder="填写车辆品牌" name="">
+                <!-- <button type="button">大众</button> -->
+              </div>
+            </li>
+            <li>
+              <img src="img/bindcar2.png" alt="">
+              <div>
+                <h3>车辆类型</h3>
+                <input type="text" ng-value="bindCar.name" ng-model="bindCar.name" placeholder="填写车辆类型" name="">
+                <!-- <button type="button">辉昂2017新款</button> -->
+              </div>
+            </li>
+            <li>
+              <img src="img/bindcar3.png" alt="">
+              <div>
+                <h3>是否充电</h3>
+                <div>
+                  <input type="radio" id="recharge" ng-model="bindCar.cartype" ng-checked="true" value="1" name="recharge">
+                  <label for="recharge">是</label>
+                </div>
+                <div>
+                  <input type="radio" id="nocharge" ng-model="bindCar.cartype" value="2" name="recharge">
+                  <label for="nocharge">否</label>
+                </div>
+              </div>
+            </li>
+            <li style="height: {{frontHeight}}rem">
+              <img src="img/bindcar4.png">
+              <div class="carPicture">
+                <h3>前脸图片</h3>
+                <div>
+                    <img ng-src="{{img}}" ng-repeat="img in frontImgs track by $index" on-hold="deletps(img,$index,'front')" ng-click="getBig($event,$index,'front')">
+                    <button type="button" ng-if="frontShow" ng-click="gotoCarme('front')">
+                      <img style="margin:0" src="img/addpicture.png">
+                    </button>
+                </div>
+              </div>
+            </li>
+            <li style="height: {{behindHeight}}rem">
+              <img src="img/bindcar4.png">
+              <div class="carPicture">
+                <h3>后脸图片</h3>
+                <div>
+                    <img ng-src="{{img}}" ng-repeat="img in behindImgs track by $index" on-hold="deletps(img,$index,'behind')" ng-click="getBig($event,$index,'behind')">
+                    <button type="button" ng-if="behindShow" ng-click="gotoCarme('behind')">
+                      <img style="margin:0" src="img/addpicture.png">
+                    </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div id="bindCarBtn">
+            <button type="submit">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="bigimg" type="text/ng-template">
+<ion-popover-view>
+  <div id="bigImg" ng-click="closebigimg()">
+    <img src="{{Bimg}}"/>
+  </div>
+</ion-popover-view>
+</script>

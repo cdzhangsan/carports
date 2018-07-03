@@ -1,0 +1,17 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ng-click="back()">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">设置昵称</h2>
+    <button class="bindCar" ng-click="subNick()" type="button">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" scroll="false">
+    <div class="setEmail">
+      <input type="text" placeholder="输入您的新昵称" ng-model="nick.name">
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

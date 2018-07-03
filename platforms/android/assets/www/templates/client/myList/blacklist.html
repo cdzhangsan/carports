@@ -1,0 +1,26 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ui-sref="mySet">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">黑名单</h2>
+  </ion-header-bar>
+  <nav class="blacklistNav">
+    <button type="button" ng-click="getBlackList('owner')" ng-class="ownerClass">车主</button>
+    <button type="button" ng-click="getBlackList('proprietor')" ng-class="proprietorClass">业主</button>
+  </nav>
+  <ion-content style="top:2.14rem" scrollbar-y="false" overflow-scroll="false">
+    <div class="blacklist">
+       <ion-list>
+        <ion-item ng-repeat="blacklist in blacklists" item="item" class="item-remove-animate showScan">
+          <img src="img/touxiang1.jpg">
+          <p>{{blacklist.useName}}</p>
+          <ion-option-button class="button-assertive" ng-click="delet(blacklist)">
+            <img src="img/delet.png" alt="">
+            删除
+          </ion-option-button>
+        </ion-item>
+      </ion-list> 
+    </div>
+  </ion-content>
+</ion-view>

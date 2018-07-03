@@ -1,0 +1,72 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="management">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">我的设置</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="userInfo">
+      <div class="userInfo-photo" ng-click="gotoCarme()">
+        <img id="usepic" ng-src="{{userPhoto}}">
+        <a>修改头像</a>
+      </div>
+      <ul class="setInfo">
+        <li>
+          <a ui-sref="setNickName({setType:'mMyset'})">
+            <p>昵称</p>
+            <div>
+              <p>{{name}}</p>
+              <img class="goto" src="img/goto.png" />
+            </div>
+          </a>
+        </li>
+        <li>
+          <a style="border:0" ui-sref="setPassword({setType:'mMyset'})">
+            <p>密码</p>
+            <div>
+              <p>修改密码
+              </p> <img class="goto" src="img/goto.png">
+            </div>
+          </a>
+        </li>
+      </ul>
+      <span class="line"></span>
+      <ul class="setInfo">
+        <li>
+          <a>
+            <p>手机号</p>
+            <p>{{userName}}</p>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>邮箱</p>
+            <p>{{email}}</p>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>电话</p>
+            <p>{{phone}}</p>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>归属公司</p>
+            <p>{{officename}}</p>
+          </a>
+        </li>    
+        <li>
+          <a>
+            <p>工号</p>
+            <p>{{no}}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <button class="userInfo-out" ng-click="outLogin()" style="margin-top:0.9rem">退出登录</button>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

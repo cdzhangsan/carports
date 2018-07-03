@@ -1,0 +1,17 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ui-sref="mySet">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">设置邮箱</h2>
+    <button class="bindCar" type="button" ng-click="setEmail()">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" scroll="false">
+    <div class="setEmail">
+      <input type="text" placeholder="输入您的新邮箱" ng-model="user.email">
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

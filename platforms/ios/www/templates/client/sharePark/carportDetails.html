@@ -1,0 +1,75 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ng-click="backPark()">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">车位详情</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="carportssDetails">
+      <content>
+        <div class="parkMessHeader">
+          <aside>
+            <img src="img/parkIcon.png">
+          </aside>
+          <aside>
+            <div class="parkName">
+              <h2>{{parkMes.name}}</h2>
+              <p>{{parkMes.count}}空位</p>
+              <p>{{parkMes.range}}km</p>
+            </div>
+            <p class="parkDress">
+              {{parkMes.address}}
+            </p>
+          </aside>
+        </div>
+        <ul class="carportList">
+          <li>
+            <h2>车位编号</h2>
+            <p>{{carportMes.slotid}}</p>
+          </li>
+          <li>
+            <h2>车位评价</h2>
+            <p>5分</p>
+          </li>
+          <li>
+            <h2>充电桩</h2>
+            <p>{{carportMes.charg}}</p>
+          </li>
+          <li>
+            <h2>开始时间</h2>
+            <p>{{carportMes.stime}}</p>
+          </li>
+          <li>
+            <h2>结束时间</h2>
+            <p>{{carportMes.etime}}</p>
+          </li>
+          <li>
+            <h2>停车时长</h2>
+            <p>{{carportMes.duration}}分钟</p>
+          </li>
+          <li>
+            <h2>停车单价</h2>
+            <p>{{carportMes.parkfee}}元/分钟</p>
+          </li>
+          <li>
+            <h2>充电单价</h2>
+            <p>{{carportMes.chgfee}}元/分钟</p>
+          </li>
+          <li>
+            <h2>超时停车费倍数</h2>
+            <p>{{carportMes.overtimeinterval}}</p>
+          </li>
+          <li>
+            <h2>预约总额</h2>
+            <p>{{carportMes.total}}元</p>
+          </li>
+          <li class="nextStep">
+            <button type="button" ng-click="scribeSure()">预约</button>
+          </li>
+        </ul>          
+      </content>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

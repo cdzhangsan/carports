@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\config.xml",
+        "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\xml\\config.xml"
+    },
+    {
+        "merged": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\provider_paths.xml",
+        "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\config.xml",
+        "source": "D:\\carports\\platforms\\android\\res\\xml\\config.xml"
+    },
+    {
+        "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\xml\\provider_paths.xml",
+        "source": "D:\\carports\\platforms\\android\\res\\xml\\provider_paths.xml"
+    }
+]

@@ -1,0 +1,172 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center" style="background-image:none;box-shadow:0 0 0 #fff">
+    <button class="button" ui-sref="app.sharePark">
+      <img src="img/back.png">
+    </button>
+    <h2 id="myorder">我的订单</h2>
+    <div class="orderBtns">
+      <a ng-click="choiceUser($event)">
+        {{userType}}
+        <img src="img/pullDoen.png" alt="">
+      </a>
+      <button type="button">
+        <img src="img/search.png" alt="">
+      </button>
+    </div>
+  </ion-header-bar>
+  <div class="myOrder">
+    <nav class="myOrderNav">
+      <ul ng-if="carUser">
+        <li>
+          <button class="orderNavBtn {{orderNavBtns.publish}}" ng-click="getOrder('publish')" type="button">已发布</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{orderNavBtns.subscribe}}" ng-click="getOrder('subscribe')" type="button">已预约</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{orderNavBtns.going}}" ng-click="getOrder('going')" type="button">进行中</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{orderNavBtns.pay}}" ng-click="getOrder('pay')" type="button">待支付</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{orderNavBtns.done}}" ng-click="getOrder('done')" type="button">已完成</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{orderNavBtns.evaluate}}" ng-click="getOrder('evaluate')" type="button">待评价</button>
+        </li>
+      </ul>
+      <ul ng-if="!carUser">
+        <li>
+          <button class="orderNavBtn {{owerOrderNavBtns.publish}}" ng-click="getowerOrder('publish')" type="button">已发布</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{owerOrderNavBtns.subscribe}}" ng-click="getowerOrder('subscribe')" type="button">已预约</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{owerOrderNavBtns.going}}" ng-click="getowerOrder('going')" type="button">进行中</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{owerOrderNavBtns.pay}}" ng-click="getowerOrder('pay')" type="button">待支付</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{owerOrderNavBtns.done}}" ng-click="getowerOrder('done')" type="button">已完成</button>
+        </li>
+        <li>
+          <button class="orderNavBtn  {{owerOrderNavBtns.evaluate}}" ng-click="getowerOrder('evaluate')" type="button">待评价</button>
+        </li>
+      </ul>
+    </nav>
+    <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+      <div class="orderList" ng-if="carUser">  <!-- 车主 -->
+        <div class="orderCard" ng-repeat="order in orderMes" ng-if="publishShow" ng-click="toDetail(order)">
+          <header>
+          </header>
+          <content style="display:block;padding: 0.2rem 0.3rem">
+            <p style="margin-top:0.2rem">求租人：{{order.mobile}}</p>
+            <p style="margin-top:0.2rem">开始时间：{{order.stime}}</p>
+            <p style="margin-top:0.2rem">结束时间：{{order.etime}}</p>
+          </content>
+          <footer>
+            <button type="button" ng-click="deltOrder(order,'caruser',$event)">取消订单</button>
+            <button type="button" ui-sref="demandCarport({demandId:'modify',orderId:order.id})">修改订单</button>
+          </footer>
+        </div>
+        <div class="orderCard" ng-repeat="order in orderMes" ng-if="!publishShow" ng-click="toDetail(order)">
+          <header>
+            <img src="img/P.png">
+            <h2>{{order.name}}</h2>
+          </header>
+          <content>
+            <aside>
+              <img ng-src="{{order.slotpic}}">
+              <div>
+                <p>车位号：{{order.slotid}}</p>
+                <p>预约时长：{{order.duration}}小时</p>
+              </div>
+            </aside>
+            <aside>
+              <h3>￥{{order.parkfee}}</h3>
+            </aside>
+          </content>
+          <footer>
+            <button type="button" ng-if="navigator">导航</button>
+            <button type="button" ng-if="communicat">即时通讯</button>
+            <button type="button" ng-if="modprice">修改金额</button>
+            <button type="button" ng-if="stSure" ng-click="step_car('sure',order,$event)">停车确认</button>
+            <button type="button" ng-if="stSucc" ng-click="step_car('succ',order,$event)">停车完成</button>
+            <button type="button" ng-if="paySucc" ng-click="payAll(order,$event)">支付完成</button>
+            <button type="button" ng-if="evaluate" ui-sref="evaluate({orderId:order.id,orderPid:order.pid})">评价</button>
+            <button type="button" ng-if="black">加入黑名单</button>
+            <button type="button" ng-if="deletOrder" ng-click="deletorder(order.id,'caruser',$event)">删除订单</button>
+          </footer>
+        </div>
+      </div>
+      <div class="orderList" ng-if="!carUser">   <!-- 业主 -->
+        <div class="orderCard" ng-if="ownerpublishShow" ng-repeat="order in orderMes" ng-click="toDetail(order)">
+          <header>
+            <img src="img/P.png">
+            <h2>{{order.name}}</h2>
+          </header>
+          <content class="gcontent">
+              <img ng-src="{{order.slotpic}}" alt="无车位图片">
+              <div>
+                <p class="p1">车位号：{{order.slotid}}</p>
+                <p class="p2">开始时间:{{order.stime}}</p>
+                <p class="p3">开始时间:{{order.etime}}</p>
+              </div>
+          </content>
+          <footer>
+            <button type="button" ng-click="deltOrder(order,'nocaruser',$event)">取消订单</button>
+            <button type="button" ui-sref="showCarport({carportId:order.pid,orderId:order.id,type:'mod'})">修改订单</button>
+          </footer>
+        </div>
+        <div class="orderCard" ng-repeat="order in orderMes" ng-if="!ownerpublishShow" ng-click="toDetail(order)">
+          <header>
+            <img src="img/P.png">
+            <h2>{{order.name}}</h2>
+          </header>
+          <content>
+            <aside>
+              <img ng-src="{{order.slotpic}}">
+              <div>
+                <p>车位号：{{order.slotid}}</p>
+                <p>预约时长：{{order.duration}}小时</p>
+              </div>
+            </aside>
+            <aside>
+              <h3>￥{{order.parkfee}}</h3>
+            </aside>
+          </content>
+          <footer>
+            <button type="button" ng-if="sureOrder">确认订单</button>
+            <button type="button" ng-if="cancelOrder">取消订单</button>
+            <button type="button" ng-if="ocommunicat">即时通讯</button>
+            <button type="button" ng-if="omodprice">修改金额</button>
+            <button type="button" ng-if="oevaluate" ui-sref="evaluate({orderId:order.id})">评价</button>
+            <button type="button" ng-if="oblack">加入黑名单</button>
+            <button type="button" ng-if="odeletOrder" ng-click="deletorder(order.id,'caruser',$event)">删除订单</button>
+          </footer>
+        </div>
+      </div>
+    </ion-content>
+  </div>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="userPopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closeuserPopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="sureuserPopover(option)" ng-repeat="option in options">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio" />
+            <span class="leader">
+               {{option}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

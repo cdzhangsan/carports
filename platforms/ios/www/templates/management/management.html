@@ -1,0 +1,102 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content class="management" drag-content="false" style="background: #f3f4f5">
+    <div class="headerBg"></div>
+    <ion-view class="searchPark" style="background-color: rgba(0,0,0,0);">
+      <ion-header-bar style="background: rgba(0,0,0,0);box-shadow: none">
+        <nav>
+          <button ng-click="showmenuAlert()" side="left" type="button" class="enumBtn" menu-toggle="left">
+            <img class="enum" src="img/menu-icon.png">
+          </button>
+          <h2>{{userMess.name}}</h2>
+        </nav>
+      </ion-header-bar>
+      <ion-content scrollbar-y="false" overflow-scroll="false" class="manageContent">
+        <div class="ManageSearch">
+          <div>
+            <img src="img/searchLeader.png" style="margin-left: 41%;">
+            <input type="text" style="width:1rem" readonly="" ng-focus="inSearch()" ng-blur="outSearch()" name="" placeholder="搜索">
+            <!-- <button type="button" ng-click="search()" ng-if="manageSearchBtn">搜索</button> -->
+          </div>
+        </div>
+        <ul>
+          <li ng-if="matters.company">
+            <a ui-sref="companyManagement">
+              <aside>
+                <img src="img/company.png" alt="">
+              </aside>
+              <aside>
+                <h3>公司管理</h3>
+                <p>COMPANY MANAGEMENT</p>
+              </aside>
+            </a>
+          </li>
+          <li ng-if="matters.park">
+            <a ui-sref="parkMan">
+              <aside>
+                <img src="img/garage.png" alt="">
+              </aside>
+              <aside>
+                <h3>停车场管理</h3>
+                <p>GARAGE MANAGEMENT</p>
+              </aside>
+            </a>
+          </li>
+          <li ng-if="matters.user">
+            <a ui-sref="userManagement">
+              <aside>
+                <img src="img/user.png" alt="">
+              </aside>
+              <aside>
+                <h3>用户管理</h3>
+                <p>USER MANAGEMENT</p>
+              </aside>
+            </a>
+          </li>
+          <li ng-if="matters.carport">
+            <a ui-sref="carportMan">
+              <aside>
+                <img src="img/park.png" alt="">
+              </aside>
+              <aside>
+                <h3>车位管理</h3>
+                <p>PARKING MANAGEMENT</p>
+              </aside>
+            </a>
+          </li>
+          <li ng-if="matters.charg">
+            <a ui-sref="chargMan">
+              <aside>
+                <img src="img/charge.png" alt="">
+              </aside>
+              <aside>
+                <h3>充电桩管理</h3>
+                <p>CHARGE PILE MANAGEMENT</p>
+              </aside>
+            </a>
+          </li>
+        </ul>
+      </ion-content>
+    </ion-view>
+    <div ng-if="menuAlert" class="alerBg" ng-click="closemenuAlert()" style="top:0;z-index: 100"></div>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-content scroll="false">
+      <dl class="userMess">
+        <dt><img ng-src="{{userPhoto}}"></dt>
+        <dd>{{userName}}</dd>
+      </dl>
+      <ion-list>
+        <div class="list menuList">
+          <a class="item item-icon-left">
+            <img src="img/message.png" >
+            我的消息
+          </a>
+          <a class="item item-icon-left" ui-sref="mMySet">
+            <img src="img/setting.png" >
+            我的设置
+          </a>
+        </div>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

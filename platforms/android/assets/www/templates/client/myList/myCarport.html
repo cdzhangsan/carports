@@ -1,0 +1,86 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ui-sref="app.sharePark">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">我的车位</h2>
+    <button class="bindCar" type="button" ui-sref="bindCarport">
+      绑定车位
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="myCarport">
+      <div class="carportCard" ng-repeat="leisure in leisureCarports">
+        <div>
+          <p>车位号</p>
+          <p>{{leisure.slotid}}</p>
+        </div>
+        <div>
+          <p>停车场</p>
+          <p>{{leisure.name}}</p>
+        </div>
+        <button type="button" id="{{leisure.id}}" ui-sref="showCarport({carportId:leisure,type:'show'})">共享车位</button>
+      </div>
+      <div class="carportMess" ng-repeat="use in useCarports" ng-click="closeuseDetail(use,$event)">
+        <header>
+          <div class="carportCard">
+            <div>
+              <p>车位号</p>
+              <p>{{use.slotid}}</p>
+            </div>
+            <div>
+              <p>停车场</p>
+              <p>{{use.name}}</p>
+            </div>
+            <button id="{{use.slotid}}" type="button" ng-click="getuseDetail(use,$event)">{{use.statu}}</button>
+          </div>
+        </header>
+        <content ng-if="use.useDetail">
+          <ul>
+              <li>
+                <p>车位号</p>
+                <p>{{useDetail.slotid}}</p>
+              </li>
+              <li>
+                <p>充电桩</p>
+                <p>{{chargMes}}</p>
+              </li>
+              <li>
+                <p>开始时间</p>
+                <p>{{useDetail.stime}}</p>
+              </li>
+              <li>
+                <p>结束时间</p>
+                <p>{{useDetail.etime}}</p>
+              </li>
+              <!-- <li>
+                <p>停车时长</p>
+                <p>{{duration}}</p>
+              </li> -->
+              <li>
+                <p>停车单价</p>
+                <p>{{useDetail.parkfee}}元/分钟</p>
+              </li>
+              <li>
+                <p>充电单价</p>
+                <p>{{useDetail.chgfee}}元/度</p>
+              </li>
+              <li>
+                <p>充电服务费</p>
+                <p>{{useDetail.servfee}}元/分钟</p>
+              </li>
+              <li>
+                <p>超时停车费率</p>
+                <p>{{useDetail.overtimemultiplier}}倍</p>
+              </li>
+              <!-- <li>
+                <p>预计总额</p>
+                <p>12元</p>
+              </li> -->
+          </ul>
+        </content>
+      </div>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

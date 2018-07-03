@@ -1,0 +1,88 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="userManagement">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">{{userTitle}}</h2>
+    <button style="color:#fff" ng-click="subUser()" class="bindCar" type="submit">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <form class="companyMess" method="post" name="adduserForm" novalidate>
+      <ul>
+        <li class="title">
+          <input type="text" ng-value="" ng-model="person.name" placeholder="输入人员姓名(必填)" required>
+        </li>       
+        <li>
+          <h3>手机号码</h3>
+          <input type="text" maxlength="11" minlength="11" ng-value="person.mobile" ng-model="person.mobile" placeholder="输入手机号码(必填)" required>
+        </li> 
+        <li ng-if="pwdShow">
+          <h3>登录密码</h3>
+          <input type="text" maxlength="10" minlength="6" ng-model="person.pwd" placeholder="6-10位,数字与字母组合、必填" ng-blur="verifyPwd()" required>
+        </li>
+        <li>
+          <h3>归属公司</h3>
+          <button type="button" ng-click="toSelect($event)">{{office}}</button>
+        </li>
+        <li>
+          <h3>工号</h3>
+          <input type="text" ng-value="person.no" ng-model="person.no" placeholder="输入工号">
+        </li>
+        <li>
+          <h3>电话</h3>
+          <input type="text" ng-value="person.phone" ng-model="person.phone" placeholder="输入电话">
+        </li>      
+        <li>
+          <h3>邮箱</h3>
+          <input type="text" ng-value="person.email" ng-model="person.email" placeholder="输入邮箱(必填)" required>
+        </li>
+        <li>
+          <h3>管理员</h3>
+          <div class="isNot">
+            <div>
+              <input type="radio" id="recharge" ng-model="person.roleid" ng-checked="manager" value="2" name="recharge">
+              <label for="recharge">是</label>
+            </div>
+            <div>
+              <input type="radio" id="nocharge" ng-model="person.roleid" ng-checked="!manager" value="3" name="recharge">
+              <label for="nocharge">否</label>
+            </div>
+          </div>
+        </li>
+        <li ng-if="add" class="delet">
+          <button type="button" ng-click="deletUser()">删除用户</button>
+        </li>
+      </ul>
+    </form>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="select" type="text/ng-template">
+<ion-popover-view>
+  <div class="alerBg" style="top:0" ng-click="closeselect()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead checkChargeLeads" style="background: #fff;border-radius: 6px;">
+        <div id="orderSearch">
+          <input type="text" placeholder="请输入搜索条件" ng-model="search.key"/>
+          <button type="button" ng-click="searchSmth()">搜索</button>
+        </div>
+        <ion-scroll class="chscro" style="height: {{nowhei}};min-height: 0.3rem" scrollbar-y="false" overflow-scroll="false">
+          <div class="leadList02">
+            <label class="item item-radio" style="background:rgba(0,0,0,0);" ng-repeat="select in selects track by $index" ng-model="choice">
+              <input name="radio-group" ng-value="select" ng-model="selecter.value" type="radio"/>
+              <div class="radio-content" style="padding-left:0.3rem;">
+                <div>
+                  <span class="optionText">{{select.name}}</span>
+                </div>
+                <img src="img/check.png" class="radio-icon checkLeader" style="padding:0;height:0.17rem;"/>
+              </div>
+            </label>
+          </div>
+        </ion-scroll>
+      </div>
+      <button type="button" ng-click="selectSure()">确定</button>
+    </div>
+</ion-popover-view>
+</script>

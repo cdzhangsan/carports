@@ -1,0 +1,37 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="management">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">充电桩管理</h2>
+    <button style="color:#fff" class="bindCar" type="button" ui-sref="addCharg({chargeType:'add'})">
+      添加
+    </button>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" overflow-scroll="false">
+    <div class="companyManagement">
+      <div class="search">
+        <div>
+          <img src="img/searchLeader.png" alt="">
+          <input type="text" ng-model="searchCon.searchName" ng-focus="inSearch()" ng-blur="outSearch()" name="" placeholder="搜索">
+          <button type="button" ng-click="search()" ng-if="manageSearchBtn">搜索</button>
+        </div>
+      </div>
+      <ul>
+        <li ng-repeat="charge in charges">
+          <a id="{{charge.id}}" ui-sref="addCharg({chargeType:'change',chargeId:charge.id})">
+            <aside>
+              <h2>充电桩型号：{{charge.stakename}}</h2>
+              <p>车位：{{charge.slotid}}</p>
+              <p>充电类型：{{charge.stakType}}</p>
+            </aside>
+            <aside>
+              <img src="img/tonext.png" alt="">
+            </aside>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

@@ -1,0 +1,92 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="carportDetails">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">车位预约</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="carportssDetails">
+      <content>
+        <div class="parkMessHeader">
+          <aside>
+            <img src="img/parkIcon.png">
+          </aside>
+          <aside>
+            <div class="parkName">
+              <h2>龙域国际地下车库</h2>
+              <p style="display: none"></p>
+              <p>3.33km</p>
+            </div>
+            <p class="parkDress">
+              北京市昌平区龙域北街3号院1号楼龙域国际中兴
+            </p>
+          </aside>
+        </div>
+        <ul class="carportList">
+          <li>
+            <h2>开始时间</h2>
+            <div ng-click="getStartTime()">
+              <input id="carportStartTime" type="text" name="input_date" value="2018-01-16 10:23" data-lcalendar="2010-01-11,2033-12-31" readonly=""/>
+              <img src="img/pullDoen.png">
+            </div>
+          </li>
+          <li>
+            <h2>结束时间</h2>
+            <div ng-click="getStartTime()">
+              <input id="carportEndTime" type="text" name="input_date" value="2018-01-16 10:23" data-lcalendar="2010-01-11,2033-12-31" readonly=""/>
+              <img src="img/pullDoen.png">
+            </div>
+          </li>
+          <li>
+            <h2>停车时长</h2>
+            <p>{{duration}}</p>
+          </li>
+          <li>
+            <h2>预约车辆</h2>
+            <div>
+              <input class="voiture" ng-click=openPopover($event) type="button" value="{{voiture}}"/>
+              <img src="img/pullDoen.png">
+            </div>          
+          </li>
+          <li>
+            <h2>停车单价</h2>
+            <p>5元/小时</p>
+          </li>
+          <li>
+            <h2>充电单价</h2>
+            <p>4元/小时</p>
+          </li>
+          <li>
+            <h2>超时停车费</h2>
+            <p>20元/小时</p>
+          </li>
+          <li>
+            <h2>预约总额</h2>
+            <p>15元</p>
+          </li>
+          <li class="nextStep">
+            <button type="button" ui-sref="subscribeSure">预约</button>
+          </li>
+        </ul>          
+      </content>
+    </div>
+  </ion-content>
+</ion-view>
+<script id="popover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closePopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="closePopover(option)"  ng-repeat="option in options">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio"/>
+            <span class="leader">
+               {{option}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

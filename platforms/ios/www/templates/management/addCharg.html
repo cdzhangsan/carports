@@ -1,0 +1,76 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="chargMan">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">{{chargTitle}}</h2>
+    <button style="color:#fff" ng-click="subCarport()" class="bindCar" type="submit">
+      保存
+    </button>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <form id="addpark" class="companyMess" method="post" name="adduserForm" novalidate>
+      <ul>
+        <li>
+          <h3>车位编号</h3>
+          <input type="text" ng-value="charg.slotid" ng-model="charg.slotid" ng-blur="checkSlotid()" placeholder="车位编号(必填)" required>
+        </li>
+        <li>
+          <h3>充电桩类型</h3>
+          <button type="button" ng-click="choicestaketype($event)">{{stakeType}}</button>
+        </li>
+        <li>
+          <h3>充电功率</h3>
+          <input type="text" ng-value="charg.power" ng-model="charg.power" placeholder="充电功率(KW、必填)" required>
+        </li>
+        <li>
+          <h3>充电桩型号</h3>
+          <input type="text" ng-value="charg.stakename" ng-model="charg.stakename" placeholder="充电桩型号" required>
+        </li>
+        <!-- <li class="getTimeParent">
+          <h3>开始时间</h3>
+          <div class="getTime">
+            <input id="carportStartTime" type="text" name="input_date" placeholder="{{selectStartTime}}" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+            <img class="time" src="img/pullDoen.png" alt="">
+          </div>
+        </li>
+        <li class="getTimeParent">
+          <h3>结束时间</h3>
+          <div class="getTime">
+            <input id="carportEndTime" type="text" name="input_date" placeholder="{{selectEndTime}}" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+            <img class="time" src="img/pullDoen.png" alt="">
+          </div>
+        </li> -->
+        <li>
+          <h3>充电服务费</h3>
+          <input type="text" ng-value="charg.servfee" ng-model="charg.servfee" placeholder="充电服务费(元/度)">
+        </li>
+        <li>
+          <h3>充电电费</h3>
+          <input type="text" ng-value="charg.chgfee" ng-model="charg.chgfee" placeholder="充点电费(元/度)">
+        </li>
+        <li ng-if="!add" class="delet">
+          <button type="button" ng-click="deletCharg()">删除充电桩</button>
+        </li>
+      </ul>
+    </form>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="ownTypePopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closestaketype()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead" style="background: #fff;">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="surestaketype(staketype)" ng-repeat="staketype in staketypes">
+            <input name="radio-group" ng-value="staketype" ng-model="staketype" type="radio" />
+            <span class="leader">
+               {{staketype.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

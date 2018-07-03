@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_next_item.png",
+        "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_next_item.png"
+    },
+    {
+        "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_previous_item.png",
+        "source": "D:\\carports\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
+    },
+    {
+        "merged": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_remove.png",
+        "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_remove.png"
+    },
+    {
+        "merged": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_previous_item.png",
+        "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
+    },
+    {
+        "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_remove.png",
+        "source": "D:\\carports\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_remove.png"
+    },
+    {
+        "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_action_next_item.png",
+        "source": "D:\\carports\\platforms\\android\\res\\drawable-xxhdpi\\ic_action_next_item.png"
+    }
+]

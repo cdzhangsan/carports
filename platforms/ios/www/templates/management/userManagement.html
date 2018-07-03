@@ -1,0 +1,36 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="management">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">用户管理</h2>
+    <button style="color:#fff" class="bindCar" type="button" ui-sref="adduser({userType:'add'})">
+      添加
+    </button>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" overflow-scroll="false">
+    <div class="companyManagement userManagement">
+      <div class="search">
+        <div>
+          <img src="img/searchLeader.png" alt="">
+          <input type="text" ng-model="searchCon.searchName" ng-focus="inSearch()" ng-blur="outSearch()" name="" placeholder="搜索">
+          <button type="button" ng-click="search()" ng-if="manageSearchBtn">搜索</button>
+        </div>
+      </div>
+      <ul>
+        <li ng-repeat="person in persons">
+          <a ui-sref="adduser({userType:'change',userId:person.id})">
+            <aside>
+              <h3>{{person.name}}</h3>
+            </aside>
+            <aside>
+              <p>{{person.role}}</p>
+              <img src="img/usenext.png" alt="">
+            </aside>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

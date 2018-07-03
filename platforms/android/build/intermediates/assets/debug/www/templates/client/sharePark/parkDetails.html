@@ -1,0 +1,64 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="app.sharePark">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">停车场详情</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" on-scroll="" scrollbar-y="false" overflow-scroll="false">
+    <div class="parksDetails">
+      <header>
+        <img src="img/parks.png" alt="">
+      </header>
+      <content>
+        <div class="parkMessHeader">
+          <aside>
+            <img src="img/parkIcon.png">
+          </aside>
+          <aside>
+            <div class="parkName">
+              <h2>{{parkMes.name}}</h2>
+              <p>{{parkMes.count}}空位</p>
+              <p>{{parkMes.range}}km</p>
+            </div>
+            <p class="parkDress">
+              {{parkMes.address}}
+            </p>
+          </aside>
+        </div>
+        <div class="parkingSpanc" id="parkMessList">
+          <div class="parkingSpanc-content">
+            <nav class="parkingSpanc-choice">
+              <ul>
+                <li>
+                  <button style="color:{{parkSelectBtn.maColor}}" ng-click="getParks('matchedDegree')" id="matchedDegree" type="button">匹配度最高</button>
+                </li>
+                <li>
+                  <button style="color:{{parkSelectBtn.piColor}}" ng-click="getParks('price')" id="price" type="button">价格最低</button>
+                </li>
+                <li>
+                  <button style="color:{{parkSelectBtn.dtColor}}" ng-click="getParks('distance')" id="distance" type="button">评价最高</button>
+                </li>              
+              </ul>
+            </nav>
+            <ul class="parkMessList-content">
+              <li ng-repeat="parkSolit in parkSolits">
+                <a ng-click="godeatil(parkSolit.id)" id="{{parkSolit.id}}">
+                  <aside>
+                      <p>车位编号：{{parkSolit.slotid}}</p>
+                      <p>充电桩：{{parkSolit.charg}}</p>
+                  </aside>
+                  <aside>
+                      <p>停车单价：{{parkSolit.parkfee}}元/分钟</p>
+                      <p>可用时间：{{parkSolit.floor}}分钟</p>
+                  </aside>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </content>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

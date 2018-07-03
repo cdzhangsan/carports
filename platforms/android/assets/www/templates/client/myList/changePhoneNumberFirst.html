@@ -1,0 +1,38 @@
+﻿<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="mySet">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">更换手机号</h2>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" scroll="false">
+    <div class="changePhoneNumber">
+      <header>
+        <div>
+          <img src="img/phone.png" alt="">
+          <p>当前手机号</p>
+        </div>
+        <h2>{{mobile}}</h2>
+      </header>
+      <div class="content">
+        <p>更换手机号码不影响您的当前行程、账号等信息，修改后必须使用新手机号登录； 仅支持修改到未注册的手机号。
+        </p>
+      </div>
+      <button type="button" ng-click="openPopover($event)">更换手机号</button>
+    </div>
+  </ion-content>
+</ion-view>
+<script id="popover" type="text/ng-template">
+  <ion-popover-view>
+    <div style="top:0" class="alerBg" ng-click="closePopover()"></div>
+    <div class="getCode">
+      <h2>验证当前手机号</h2>
+      <div>
+        <input type="tel" placeholder="输入验证码">
+        <button type="button">获取验证码</button>
+      </div>
+      <button type="button" ng-click="PhoneNext()">下一步</button>
+    </div>
+    </div>
+  </ion-popover-view>
+</script>

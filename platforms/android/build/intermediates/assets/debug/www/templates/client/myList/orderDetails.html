@@ -1,0 +1,236 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="myOrder">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">订单详情</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="orderDetails" ng-if="cartype">
+      <header class="orderDetail-card">
+        <div ng-if="!simple">
+          <img src="img/orderdetail01.png">
+          <aside>
+            <h3>{{ordermes.name}}</h3>
+            <h3>{{ordermes.address}}</h3>
+          </aside>
+        </div>
+        <div ng-if="simple">
+          <img src="img/orderdetail01.png">
+          <aside>
+            <h3>{{ordermes.address}}</h3>
+          </aside>
+        </div>
+      </header>
+      <content class="orderDetail-list">
+        <div class="card" ng-if="!simple">
+          <aside>
+            <img ng-src="{{ordermes.slotpic}}" alt="">
+            <div>
+              <p>车位号：{{ordermes.slotid}}</p>
+              <p>预约时长：{{ordermes.duration}}小时</p>
+            </div>
+          </aside>
+          <aside>
+            <h3>￥{{ordermes.parkfee}}</h3>
+          </aside>
+        </div>
+        <ul ng-if="simple">
+            <li>
+              <p>求租人</p>
+              <p>{{ordermes.mobile}}</p>
+            </li>
+            <li>
+              <p>距离范围</p>
+              <p>{{ordermes.distance}}米</p>
+            </li>
+            <li>
+              <p>开始时间</p>
+              <p>{{ordermes.stime}}</p>
+            </li>
+            <li>
+              <p>结束时间</p>
+              <p>{{ordermes.etime}}</p>
+            </li>
+            <li>
+              <p>车位单价上限</p>
+              <p>{{ordermes.parkfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>充电单价上限</p>
+              <p>{{ordermes.chgfee}}元/分钟</p>
+            </li>
+        </ul>
+        <ul ng-if="!simple">
+            <li>
+              <p>充电桩</p>
+              <p>{{ordermes.charg}}</p>
+            </li>
+            <li>
+              <p>开始时间</p>
+              <p>{{ordermes.stime}}</p>
+            </li>
+            <li>
+              <p>结束时间</p>
+              <p>{{ordermes.etime}}</p>
+            </li>
+            <li>
+              <p>停车时长</p>
+              <p>{{ordermes.duration}}</p>
+            </li>
+            <li>
+              <p>预约车辆</p>
+              <p>{{ordermes.plateno}}</p>
+            </li>
+            <li>
+              <p>停车单价</p>
+              <p>{{ordermes.parkfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>充电单价</p>
+              <p>{{ordermes.chgfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>超时停车费</p>
+              <p>{{ordermes.overparkfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>预付款</p>
+              <p>{{ordermes.prepay}}元</p>
+            </li>
+            <li ng-if="doing">
+              <p>预计总额</p>
+              <p>20元</p>
+            </li>
+            <li ng-if="doing">
+              <p>订单总额</p>
+              <p>20元</p>
+            </li>
+        </ul>
+      </content>
+      <footer>
+          <p>订单编号：{{ordermes.id}}</p>
+          <p>创建时间：{{ordermes.createtime}}</p>
+        </footer>
+    </div>
+    <div class="orderDetails" ng-if="!cartype">
+      <header class="orderDetail-card">
+        <div ng-if="!simple">
+          <img src="img/orderdetail01.png">
+          <aside>
+            <h3>{{ordermes.name}}</h3>
+            <h3>{{ordermes.address}}</h3>
+          </aside>
+        </div>
+        <div ng-if="simple">
+          <img src="img/orderdetail01.png">
+          <aside>
+            <h3>{{ordermes.address}}</h3>
+          </aside>
+        </div>
+      </header>
+      <content class="orderDetail-list">
+        <div class="card" ng-if="!simple">
+          <aside>
+            <img ng-src="{{ordermes.slotpic}}" alt="">
+            <div>
+              <p>车位号：{{ordermes.slotid}}</p>
+              <p>预约时长：{{ordermes.duration}}小时</p>
+            </div>
+          </aside>
+          <aside>
+            <h3>￥{{ordermes.parkfee}}</h3>
+          </aside>
+        </div>
+        <div class="card" ng-if="simple">
+          <aside>
+            <img ng-src="{{ordermes.slotpic}}">
+            <div>
+              <p style="margin-top: 0;line-height: 1.44rem">车位号：{{ordermes.slotid}}</p>
+            </div>
+          </aside>
+        </div>
+        <ul ng-if="simple">
+            <li>
+              <p>充电桩</p>
+              <p>{{ordermes.charg}}</p>
+            </li>
+            <li>
+              <p>开始时间</p>
+              <p>{{ordermes.stime}}</p>
+            </li>
+            <li>
+              <p>结束时间</p>
+              <p>{{ordermes.etime}}</p>
+            </li>
+            <li>
+              <p>停车单价</p>
+              <p>{{ordermes.parkfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>充电单价</p>
+              <p>{{ordermes.chgfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>充电服务费</p>
+              <p>{{ordermes.servfee}}元/度</p>
+            </li>
+            <li>
+              <p>超时停车费</p>
+              <p>{{ordermes.overtimemultiplier}}倍</p>
+            </li>
+        </ul>
+        <ul ng-if="!simple">
+            <li>
+              <p>充电桩</p>
+              <p>{{ordermes.charg}}</p>
+            </li>
+            <li>
+              <p>开始时间</p>
+              <p>{{ordermes.stime}}</p>
+            </li>
+            <li>
+              <p>结束时间</p>
+              <p>{{ordermes.etime}}</p>
+            </li>
+            <li>
+              <p>停车时长</p>
+              <p>{{ordermes.duration}}</p>
+            </li>
+            <li>
+              <p>预约车辆</p>
+              <p>{{ordermes.plateno}}</p>
+            </li>
+            <li>
+              <p>停车单价</p>
+              <p>{{ordermes.parkfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>充电单价</p>
+              <p>{{ordermes.chgfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>超时停车费</p>
+              <p>{{ordermes.overparkfee}}元/分钟</p>
+            </li>
+            <li>
+              <p>预付款</p>
+              <p>{{ordermes.prepay}}元</p>
+            </li>
+            <li ng-if="doing">
+              <p>预计总额</p>
+              <p>20元</p>
+            </li>
+            <li ng-if="doing">
+              <p>订单总额</p>
+              <p>20元</p>
+            </li>
+        </ul>
+      </content>
+      <footer>
+          <p>订单编号：{{ordermes.id}}</p>
+          <p>创建时间：{{ordermes.createtime}}</p>
+        </footer>
+    </div>
+  </ion-content>
+</ion-view>

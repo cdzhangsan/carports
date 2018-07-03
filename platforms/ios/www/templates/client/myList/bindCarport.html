@@ -1,0 +1,84 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="myCarport">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">绑定车位</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="bindCarPort">
+      <form>
+          <ul>
+              <li>
+                <h2>停车场</h2>
+                <button type="button" ng-click="toSelect($event,'park')">{{carportMes.parkName}}</button>
+              </li>
+              <li ng-if="showCarport">
+                <h2>车位编号</h2>
+                <button type="button" ng-click="toSelect($event,'carport')">{{carportMes.slotid}}</button>
+              </li>
+              <!-- <li>
+                <h2>所有者</h2>
+                <p>{{carportMes.ownername}}</p>
+              </li> -->
+              <li>
+                <h2>所属类型</h2>
+                <p>{{carportMes.owntype}}</p>
+              </li>
+              <!-- <li>
+                <h2>充电桩型号</h2>
+                <p>B2332</p>
+              </li> -->
+              <li>
+                <h2>车位位置</h2>
+                <p>{{carportMes.address}}</p>
+              </li>
+              <li >
+                <h2>车位照片</h2>
+                <div>
+                  <img ng-if="carportPic" src="{{carportMes.slotpic}}">
+                </div>
+              </li>
+              <li>
+                <h2>产权证照片</h2>
+                <div>
+                  <img ng-if="carportPic" src="{{carportMes.propertypic}}">
+                </div>
+              </li>
+          </ul>
+          <div id="bindCarBtn">
+            <button type="button" ng-click="bindCarport()">绑定</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<script id="select" type="text/ng-template">
+<ion-popover-view>
+  <div class="alerBg" style="top:0" ng-click="closeselect()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead checkChargeLeads" style="background: #fff;border-radius: 6px;">
+        <div id="orderSearch">
+          <input type="text" placeholder="请输入搜索条件" ng-model="search.key"/>
+          <button type="button" ng-click="searchSmth()">搜索</button>
+        </div>
+        <ion-scroll class="chscro" style="height: {{nowhei}};min-height: 0.3rem" scrollbar-y="false" overflow-scroll="false">
+          <div class="leadList02">
+            <label class="item item-radio" style="background:rgba(0,0,0,0);" ng-repeat="select in selects track by $index" ng-model="choice">
+              <input name="radio-group" ng-value="select" ng-model="selecter.value" type="radio"/>
+              <div class="radio-content" style="padding-left:0.3rem;">
+                <div>
+                  <span class="optionText">{{select.name}}</span>
+                </div>
+                <img src="img/check.png" class="radio-icon checkLeader" style="padding:0;height:0.17rem;"/>
+              </div>
+            </label>
+          </div>
+        </ion-scroll>
+      </div>
+      <button type="button" ng-click="selectSure()">确定</button>
+    </div>
+</ion-popover-view>
+</script>

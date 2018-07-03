@@ -1,0 +1,37 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="management">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">停车场管理</h2>
+    <button style="color:#fff" class="bindCar" type="button" ui-sref="addpark({parkType:'add'})">
+      添加
+    </button>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" overflow-scroll="false">
+    <div class="companyManagement">
+      <div class="search">
+        <div>
+          <img src="img/searchLeader.png" alt="">
+          <input type="text" ng-model="searchCon.searchName" ng-focus="inSearch()" ng-blur="outSearch()" name="" placeholder="搜索">
+          <button type="button" ng-click="search()" ng-if="manageSearchBtn">搜索</button>
+        </div>
+      </div>
+      <ul>
+        <li ng-repeat="park in parks">
+          <a id="{{park.id}}" ui-sref="addpark({parkType:'change',parkId:park.id})">
+            <aside>
+              <h2>{{park.name}}</h2>
+              <p>位置：{{park.address}}</p>
+              <p>车位数：{{park.count}}</p>
+            </aside>
+            <aside>
+              <img src="img/tonext.png" alt="">
+            </aside>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
