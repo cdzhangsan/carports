@@ -1,0 +1,61 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content drag-content="false">
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-buttons side="left">
+        <button type="button" class="enumBtn" ng-click="showmenuAlert()" menu-toggle="left"><img class="enum" src="img/enum.png"></button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button type="button" class="enumBtn" ui-sref="searchPark"><img class="search" src="img/search.png"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    <div ng-if="menuAlert" class="alerBg" ng-click="closemenuAlert()" style="top:0;z-index: 100"></div>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-content scrollbar-y="false" overflow-scroll="false">
+      <dl class="userMess">
+        <dt><img ng-src="{{userPhoto}}"></dt>
+        <dd>{{userName}}</dd>
+      </dl>
+      <ion-list>
+        <div class="list menuList">
+          <a class="item item-icon-left" ui-sref="myInOut">
+            <img src="img/comeExpen.png" >
+            我的收支
+          </a>
+          <a class="item item-icon-left" ui-sref="myOrder">
+            <img src="img/orderForm.png" >
+            我的订单
+          </a>
+          <a class="item item-icon-left" ui-sref="myCar">
+            <img src="img/myCar.png" >
+            我的车辆
+          </a>
+          <a class="item item-icon-left" ui-sref="myCarport">
+            <img src="img/carPort.png" >
+            我的车位
+          </a>
+          <a class="item item-icon-left">
+            <img src="img/message.png" >
+            我的消息
+          </a>
+          <a class="item item-icon-left" ui-sref="myCustomer">
+            <img src="img/customService.png" >
+            我的客服
+          </a>
+          <a class="item item-icon-left" ui-sref="mySet">
+            <img src="img/setting.png" >
+            我的设置
+          </a>
+          <a class="item item-icon-left" ui-sref="#">
+            <img src="img/discountCoupon.png" >
+            我的优惠券
+          </a>
+        </div>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar class="userFootBtn">
+      <button type="button" ui-sref="demandCarport({demandId:'menu'})">求租车位</button>
+    </ion-footer-bar>
+  </ion-side-menu>
+</ion-side-menus>

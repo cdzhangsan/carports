@@ -1,0 +1,55 @@
+<ion-view view-title="共享停车">
+  <ion-content ng-click="closeParkShow($event)">
+    <div id="mapContainer"></div>
+    <div class="homeList">
+    	<button id="examine" style="bottom: {{examineBottom}}rem" type="button" class="examine" ng-click="getUserLocat()"><img src="img/examine.png"></button>
+    	<div ng-if="parkListShow" class="parkingSpanc">
+    		<div class="parkingSpanc-content">
+    			<nav class="parkingSpanc-choice">
+	    		    <ul>
+	    		        <li><button style="color:{{parkSelectBtn.maColor}}" ng-click="getParks('matchedDegree')" id="matchedDegree" type="button">匹配度最高</button></li>
+	    		    	<li><button style="color:{{parkSelectBtn.dtColor}}" ng-click="getParks('distance')" id="distance" type="button">距离最近</button></li>
+	    		    	<li><button style="color:{{parkSelectBtn.piColor}}" ng-click="getParks('price')" id="price" type="button">价格最低</button></li>
+	    		    </ul>
+	    		</nav>
+	    		<ul class="parkingSpanc-mess">
+	    		    <li ng-repeat="park in parks" id="{{park.id}}" ng-click="getparkDeatil(park.id)">
+	    		    	<a href="">
+	    		    		<div class="parkingSpanc-mess-header">
+	    		    			<h2>{{park.name}}</h2>
+	    		    			<p>{{park.range}}km</p>
+	    		    		</div>
+	    		    		<div class="parkingSpanc-mess-footer">
+	    		    			<p>剩余车位：{{park.count}}</p>
+	    		    			<p>停车单价：{{park.price}}元/小时</p>
+	    		    		</div>
+	    		    	</a>
+	    			</li>
+	    		</ul>
+    		</div>
+    	</div>
+    	<div class="park" id="park" ng-click="goparkDetails()">
+    		<div>
+    			<header>
+	    			<h2>{{parkobj.name}}</h2>
+	    		</header>
+	    		<section>
+	    			<hgroup>
+	    				<h2>{{parkobj.num}}</h2>
+	    				<p>剩余车位</p>
+	    			</hgroup>
+	    			<hgroup>
+	    				<h2>{{parkobj.range}}<i>km</i></h2>
+	    				<p>距离</p>
+	    			</hgroup>
+	    			<hgroup>
+	    				<h2>{{parkobj.price}}<i>元/每小时<i></h2>
+	    				<p>停车单价</p>
+	    			</hgroup>
+	    		</section>
+    		</div>
+    	</div>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

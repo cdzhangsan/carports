@@ -1,0 +1,104 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" type="button" ui-sref="app.sharePark">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">车位查询</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="serchParkContent">
+      <form ng-submit="searchPark($event)">
+        <ul>
+          <li>
+            <h3>车位位置</h3>
+            <div ng-click="openModal()"> 
+              <button type="button" style="width: 3.4rem">{{selectAdres}}</button>
+              <img class="goto" src="img/goto.png" alt="">
+            </div>
+          </li>
+          <li>
+            <h3>距离范围</h3>
+            <div ng-click="openPopover($event,'range')">
+              <button type="button">{{range}}</button>
+              <img class="address" src="img/pullDoen.png" alt="">
+            </div>
+          </li>
+          <li>
+            <h3>是否充电</h3>
+            <div ng-click="openPopover($event,'charge')">
+              <button type="button">{{charge}}</button>
+              <img class="address" src="img/pullDoen.png" alt="">
+            </div>
+          </li>
+          <li>
+            <h3>开始时间</h3>
+            <div class="getTime">
+              <input id="serchStartTime" type="text" name="input_date" placeholder="选择开始时间" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+              <img src="img/pullDoen.png" alt="">
+            </div>
+          </li>
+          <li>
+            <h3>结束时间</h3>
+            <div class="getTime">
+              <input id="serchEndTime" type="text" name="input_date" placeholder="选择结束时间" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+              <img src="img/pullDoen.png" alt="">
+            </div>
+          </li>
+          <li>
+            <h3>充电单价</h3>
+            <div>
+              <input type="tel" ng-model="seaConditions.chgfeed" placeholder="最低价">
+              <span></span>
+              <input type="tel" ng-model="seaConditions.chgfeeg" placeholder="最高价">
+            </div>
+          </li>
+          <li>
+            <h3>车位单价</h3>
+            <div>
+              <input type="tel" ng-model="seaConditions.parkfeed" placeholder="最低价">
+              <span></span>
+              <input type="tel" ng-model="seaConditions.parkfeeg" placeholder="最高价">
+            </div>
+          </li>
+        </ul>
+        <div class="subSearchPark">
+          <button type="submit">查询</button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<get-location></get-location>
+<script id="popover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closePopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="surePopover(option)" ng-repeat="option in options">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio" />
+            <span class="leader">
+               {{option}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+<script id="noCarportHint" type="text/ng-template">
+  <ion-popover-view>
+    <div class="popup-container noCarportHint popup-showing active" ng-click="closenoCarportHint()">
+      <div class="popup">
+        <div class="popup-head">
+          <h3>无符合条件的查询结果</h3>
+          <h5>你可以:</h5>
+        </div>
+        <div class="popup-buttons">
+          <button type="button" ui-sref="demandCarport({demandId:'searchPark'})">发布求租</button>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

@@ -1,0 +1,25 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="app.sharePark">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">预约成功</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" scroll="false">
+    <div class="subscribeSuccess">
+      <img class="sureIcon" src="img/sureIcon.png">
+      <h2>预约成功</h2>
+      <div class="successButtons">
+        <a class="navigat" ng-click="gotoNavigat()">
+              <img src="img/navigat.png" alt="">
+              <p>导航</p>
+            </a>
+        <a ui-sref="app.sharePark" class="gohome">
+              <img src="img/gohome.png" alt="">
+              <p>返回首页</p>
+            </a>
+      </div>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

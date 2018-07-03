@@ -1,0 +1,21 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="login">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">绑定手机号</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" scroll="false">
+    <div class="changeNumber">
+      <form ng-submit="changeNumber(registForm)"  name="registForm" novalidate>
+        <div>
+          <input type="tel" placeholder="输入新的手机号码" ng-model="regist.phoneNum"ng-keyup="toPhone()">
+          <button id="{{btnBackground}}" ng-disabled="btnDisabled" type="button" ng-click="getCode()">{{codeTime}}</button>
+        </div>
+        <input type="tel" ng-model="regist.code" placeholder="输入验证码">
+        <button class="subNewNumber" type="submit">下一步</button>
+      </form>  
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view class="searchPark">
+  <ion-header-bar class="managementHeader" align-title="center">
+    <button class="button" type="button" ui-sref="management">
+      <img src="img/mBack.png">
+    </button>
+    <h2 class="title" style="color:#fff">车位管理</h2>
+    <button style="color:#fff" class="bindCar" type="button" ui-sref="addCarport({carportType:'add'})">
+      添加
+    </button>
+  </ion-header-bar>
+  <ion-content scrollbar-y="false" overflow-scroll="false">
+    <div class="companyManagement">
+      <div class="search">
+        <div>
+          <img src="img/searchLeader.png" alt="">
+          <input type="text" ng-model="searchCon.searchName" ng-focus="inSearch()" ng-blur="outSearch()" name="" placeholder="搜索">
+          <button type="button" ng-click="search()" ng-if="manageSearchBtn">搜索</button>
+        </div>
+      </div>
+      <ul>
+        <li ng-repeat="carport in carports">
+          <a id="{{carport.id}}" ui-sref="addCarport({carportType:'change',carportId:carport.id})">
+            <aside>
+              <h2>{{carport.slotid}}</h2>
+              <p>{{carport.name}}</p>
+              <p>{{carport.address}}</p>
+            </aside>
+            <aside style="display: flex">
+              <button type="button" class="showCaport">共享车位</button>
+              <img src="img/tonext.png" alt="">
+            </aside>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

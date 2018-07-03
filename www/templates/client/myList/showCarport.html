@@ -1,0 +1,71 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ui-sref="myCarport">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">共享车位</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content" scrollbar-y="false" overflow-scroll="false">
+    <div class="bindCarPort">
+      <form>
+        <ul>
+          <li>
+            <h2>车位号</h2>
+            <p>{{carport.carportid}}</p>
+          </li>
+          <li>
+            <h2>车位位置</h2>
+            <p>{{carport.address}}</p>
+          </li>
+          <li>
+            <h2>充电桩型号</h2>
+            <p>{{chargMes}}</p>
+          </li>
+          <li>
+            <h2>开始时间</h2>
+            <div class="cgetTime" ng-click="getStartTime()">
+              <input id="serchStartTime" type="text" name="input_date" placeholder="{{sselt}}" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+              <img src="img/pullDoen.png" alt="">
+            </div>
+          </li>
+          <li>
+            <h2>结束时间</h2>
+            <div class="cgetTime" ng-click="getStartTime()">
+              <input id="serchEndTime" type="text" name="input_date" placeholder="{{eselt}}" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+              <img src="img/pullDoen.png" alt="">
+            </div>
+          </li>
+          <!-- <li>
+            <h2>停车时长</h2>
+            <p>{{duration}}分钟</p>
+          </li> -->
+          <li>
+            <h2>停车单价</h2>
+            <input type="text" ng-blur="price()" ng-model="carport.parkfee" placeholder="元/分钟">
+          </li>
+          <li>
+            <h2>充电单价</h2>
+            <input type="text" ng-model="carport.chgfee" placeholder="元/分钟">
+          </li>
+          <li>
+            <h2>充电服务费</h2>
+            <input type="text" ng-model="carport.servfee" placeholder="元/度">
+          </li>
+          <li>
+            <h2>超时停车费</h2>
+            <input type="text" ng-model="carport.overtimemultiplier" placeholder="停车费倍数">
+          </li>
+          <!-- <li>
+            <h2>预计总额</h2>
+            <p>{{tatol}}元</p>
+          </li> -->
+        </ul>
+        <div id="bindCarBtn">
+          <button type="button" ng-click="showCarport()">发布</button>
+        </div>
+    </div>
+    </form>
+    </div>
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>

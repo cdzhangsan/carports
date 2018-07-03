@@ -1,0 +1,78 @@
+<ion-view class="searchPark">
+  <ion-header-bar align-title="center">
+    <button class="button" ng-click="demandBack()">
+      <img src="img/back.png">
+    </button>
+    <h2 class="title">求租车位</h2>
+  </ion-header-bar>
+  <ion-content class="ion-content">
+     <div class="demandCarport">
+        <form ng-submit="inforSub(inforForm)" name="inforForm" novalidate>
+        <ul>
+            <li>
+              <p>求租人</p>
+              <p>{{userName}}</p>
+            </li>
+            <li>
+              <p>停车位置</p>
+              <div ng-click="openModal()">
+                <button type="button">{{selectAdres}}</button>
+                <img class="goto" src="img/goto.png" alt="">
+              </div>
+            </li>
+            <li>
+              <p>距离范围</p>
+              <div ng-click="opendemandPopover($event)">
+                <button type="button">{{SelectRange}}</button>
+                <img class="address" src="img/pullDoen.png" alt="">
+              </div>
+            </li>
+            <li>
+              <p>开始时间</p>
+              <div class="getTime">
+                <input id="demandStartTime" type="text" name="input_date" placeholder="选择开始时间" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+                <img src="img/pullDoen.png" alt="">
+              </div>
+            </li>
+            <li>
+              <p>结束时间</p>
+              <div class="getTime">
+                <input id="demandEndTime" type="text" name="input_date" placeholder="选择结束时间" data-lcalendar="2010-01-11,2033-12-31" readonly="" />
+                <img src="img/pullDoen.png" alt="">
+              </div>
+            </li>
+            <li>
+              <p>充电单价上限</p>
+              <input class="price" ng-model="demandInfos.chgfee" type="tel" placeholder="输入充电单价上限">
+            </li> 
+            <li>
+              <p>车位单价上限</p>
+              <input class="price" ng-model="demandInfos.parkfee" type="tel" placeholder="输入车位单价上限">
+            </li> 
+        </ul>
+        <div class="subSearchPark">
+            <button type="submit">发布</button>
+          </div>
+      </form>
+      </div> 
+  </ion-content>
+  <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+</ion-view>
+<get-location></get-location>
+<script id="demandPopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closedemandPopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="suredemandPopover(option)" ng-repeat="option in options">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio" />
+            <span class="leader">
+               {{option}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
