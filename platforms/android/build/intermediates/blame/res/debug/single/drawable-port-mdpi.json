@@ -6,5 +6,9 @@
     {
         "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-port-mdpi\\screen.png",
         "source": "D:\\carports\\platforms\\android\\res\\drawable-port-mdpi\\screen.png"
+    },
+    {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\drawable-port-mdpi\\screen.png",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\drawable-port-mdpi\\screen.png"
     }
 ]

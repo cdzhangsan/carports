@@ -1,5 +1,5 @@
 angular.module('MyServices', [])
-  .factory('getDataService', ['$q', '$http', function ($q, $http) { // 数据请求
+  .factory('getDataService', ['$q', '$http','$state', function ($q, $http,$state) { // 数据请求
     // var thePort = 'https://47.104.131.237'; // IP和端口
      var thePort = 'http://39.108.238.158:3000'; // IP和端口
 
@@ -37,16 +37,10 @@ angular.module('MyServices', [])
         })
       return promise
     }
-    var loginFalseFun = function(){
-      localStorage.removeItem('access-token');
-      localStorage.removeItem('userMessage');
-      localStorage.removeItem('spaceLocation');
-      $state.go('login');
-    }
+   
     return {
       noHeaderRequest: noHeaderRequest,
-      hasHeaderRequest: hasHeaderRequest,
-      loginFalseFun: loginFalseFun
+      hasHeaderRequest: hasHeaderRequest
     }
   }])
   .factory('parksServe', function () { // 传递停车场数据

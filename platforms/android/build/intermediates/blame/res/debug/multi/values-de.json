@@ -236,5 +236,124 @@
                 }
             }
         ]
+    },
+    {
+        "outputFile": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-de\\values-de.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 42,
+                    "endOffset": 93
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 409,
+                        "endColumn": 42,
+                        "endOffset": 447
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 98,
+                    "endColumn": 35,
+                    "endOffset": 129
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 453,
+                        "endColumn": 35,
+                        "endOffset": 484
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 134,
+                    "endColumn": 117,
+                    "endOffset": 247
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 198,
+                        "endColumn": 117,
+                        "endOffset": 311
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 252,
+                    "endColumn": 77,
+                    "endOffset": 325
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 119,
+                        "endColumn": 77,
+                        "endOffset": 192
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 330,
+                    "endColumn": 60,
+                    "endOffset": 386
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 60,
+                        "endOffset": 113
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 391,
+                    "endColumn": 90,
+                    "endOffset": 477
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-de\\multiimagechooser_strings_de.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 317,
+                        "endColumn": 90,
+                        "endOffset": 403
+                    }
+                }
+            }
+        ]
     }
 ]

@@ -1,5 +1,124 @@
 [
     {
+        "outputFile": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ko\\values-ko.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 42,
+                    "endOffset": 93
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-ko\\multiimagechooser_strings_ko.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 338,
+                        "endColumn": 42,
+                        "endOffset": 376
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 98,
+                    "endColumn": 35,
+                    "endOffset": 129
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-ko\\multiimagechooser_strings_ko.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 382,
+                        "endColumn": 35,
+                        "endOffset": 413
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 134,
+                    "endColumn": 82,
+                    "endOffset": 212
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-ko\\multiimagechooser_strings_ko.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 186,
+                        "endColumn": 82,
+                        "endOffset": 264
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 217,
+                    "endColumn": 65,
+                    "endOffset": 278
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-ko\\multiimagechooser_strings_ko.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 119,
+                        "endColumn": 65,
+                        "endOffset": 180
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 283,
+                    "endColumn": 60,
+                    "endOffset": 339
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-ko\\multiimagechooser_strings_ko.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 60,
+                        "endOffset": 113
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 344,
+                    "endColumn": 66,
+                    "endOffset": 406
+                },
+                "from": {
+                    "file": "C:\\work\\carports\\platforms\\android\\res\\values-ko\\multiimagechooser_strings_ko.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 270,
+                        "endColumn": 66,
+                        "endOffset": 332
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ko\\values-ko.xml",
         "map": [
             {

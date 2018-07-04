@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="C:\work\carports\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="C:\work\carports\platforms\android\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.1_921d932ee4c92419c17177b5669c6ea6f90a575d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\DR\carports\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -21,6 +30,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\work\carports\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5e29e17feb5c194b0eee3cc76938b82472faee51">
+        <dex dex="C:\work\carports\platforms\android\build\intermediates\pre-dexed\debug\CordovaLib-unspecified-debug_caae1ce10ae89e27351a69ca2a4bd6184de4d650.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\DR\carports\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -36,6 +54,15 @@
         revision="26.0.2"
         sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
         <dex dex="C:\Users\DR\carports\platforms\android\build\intermediates\pre-dexed\debug\support-annotations-24.1.1_f9e88ce9d4ccd8afe1291bd4d5603c630b1e85be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\work\carports\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="C:\work\carports\platforms\android\build\intermediates\pre-dexed\debug\internal_impl-24.1.1_c1fc1ac58868cef484888d2c9d543c91b616e836.jar" />
     </item>
 
 </items>

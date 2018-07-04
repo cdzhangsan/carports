@@ -6,5 +6,9 @@
     {
         "merged": "C:\\Users\\DR\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\mipmap-ldpi\\icon.png",
         "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\mipmap-ldpi\\icon.png"
+    },
+    {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\mipmap-ldpi\\icon.png",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\mipmap-ldpi\\icon.png"
     }
 ]

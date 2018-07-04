@@ -86,7 +86,9 @@ angular.module('management', [])
               $scope.companys.push(element);
             });
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -145,7 +147,9 @@ angular.module('management', [])
             $scope.options.push(element);
           });
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -192,7 +196,9 @@ angular.module('management', [])
               getMes();
             });
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -344,7 +350,9 @@ angular.module('management', [])
               if (data.status == 101) {
                 $state.go('companyManagement');
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -363,7 +371,9 @@ angular.module('management', [])
               if (data.status == 101) {
                 $state.go('companyManagement');
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -418,7 +428,9 @@ angular.module('management', [])
               $scope.persons.push(obj);
             });
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -446,7 +458,9 @@ angular.module('management', [])
             $scope.persons.push(obj);
           });
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -532,7 +546,9 @@ angular.module('management', [])
               $scope.person.id = userid;
               $scope.deletConditions.userid = result.id;
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-              $state.go('login')
+              localStorage.removeItem('access-token');
+              localStorage.removeItem('userMessage');
+              $state.go('login');
             }
           }).catch(function(err) {
             $scope.hintText = err.message;
@@ -633,7 +649,9 @@ angular.module('management', [])
               if (data.status == 101) {
                 $state.go('userManagement');
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -666,7 +684,9 @@ angular.module('management', [])
                   if (data.status == 101) {
                     $state.go('userManagement');
                   } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                    $state.go('login')
+                    localStorage.removeItem('access-token');
+                    localStorage.removeItem('userMessage');
+                    $state.go('login');
                   } else {
                     $scope.hintText = data.message;
                     $scope.hintShow = true;
@@ -708,7 +728,9 @@ angular.module('management', [])
           if (data.status == 102) {
             $scope.parks = data.data;
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -726,7 +748,9 @@ angular.module('management', [])
         if (data.status == 102) {
           $scope.parks = data.data;
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else if (data.status == 101) {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -824,7 +848,9 @@ angular.module('management', [])
             $scope.park.islotend = result.islotend;
             $scope.park.master = result.master;
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -967,7 +993,9 @@ angular.module('management', [])
               if (data.status == 101) {
                 $state.go('parkMan');
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -986,7 +1014,9 @@ angular.module('management', [])
               if (data.status == 101) {
                 $state.go('parkMan');
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -1029,7 +1059,9 @@ angular.module('management', [])
           if (data.status == 102) {
             $scope.carports = data.data;
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -1046,7 +1078,9 @@ angular.module('management', [])
         if (data.status == 102) {
           $scope.carports = data.data;
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else if (data.status == 101) {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -1155,7 +1189,9 @@ angular.module('management', [])
             $scope.deletConditions.stakeid = result.stakeid;
             $scope.deletConditions.id = result.id;
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -1428,7 +1464,9 @@ angular.module('management', [])
                   $state.go('carportMan');
                 };
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -1456,7 +1494,9 @@ angular.module('management', [])
                   $state.go('carportMan');
                 };
               } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                $state.go('login')
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('userMessage');
+                $state.go('login');
               } else {
                 $scope.hintText = data.message;
                 $scope.hintShow = true;
@@ -1489,7 +1529,9 @@ angular.module('management', [])
                   if (data.status == 101) {
                     $state.go('carportMan');
                   } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                    $state.go('login')
+                    localStorage.removeItem('access-token');
+                    localStorage.removeItem('userMessage');
+                    $state.go('login');
                   } else {
                     $scope.hintText = data.message;
                     $scope.hintShow = true;
@@ -1533,7 +1575,9 @@ angular.module('management', [])
           if (data.status == 102) {
             $scope.charges = data.data;
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -1560,7 +1604,9 @@ angular.module('management', [])
             }
           };
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else if (data.status == 101) {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -1645,7 +1691,9 @@ angular.module('management', [])
             if (data.status == 101) {
               $scope.charg.pslotid = data.pslotid;
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-              $state.go('login')
+              localStorage.removeItem('access-token');
+              localStorage.removeItem('userMessage');
+              $state.go('login');
             } else {
               $scope.has = true;
               $scope.hintText = data.message;
@@ -1731,7 +1779,9 @@ angular.module('management', [])
                 if (data.status == 101) {
                   $state.go('chargMan');
                 } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                  $state.go('login')
+                  localStorage.removeItem('access-token');
+                  localStorage.removeItem('userMessage');
+                  $state.go('login');
                 } else {
                   $scope.hintText = data.message;
                   $scope.hintShow = true;
@@ -1750,7 +1800,9 @@ angular.module('management', [])
                 if (data.status == 101) {
                   $state.go('chargMan');
                 } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                  $state.go('login')
+                  localStorage.removeItem('access-token');
+                  localStorage.removeItem('userMessage');
+                  $state.go('login');
                 } else {
                   $scope.hintText = data.message;
                   $scope.hintShow = true;
@@ -1788,7 +1840,9 @@ angular.module('management', [])
                   if (data.status == 101) {
                     $state.go('chargMan');
                   } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-                    $state.go('login')
+                    localStorage.removeItem('access-token');
+                    localStorage.removeItem('userMessage');
+                    $state.go('login');
                   } else {
                     $scope.hintText = data.message;
                     $scope.hintShow = true;

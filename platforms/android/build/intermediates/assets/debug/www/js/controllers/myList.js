@@ -189,7 +189,9 @@ angular.module('myList', [])
               $scope.orderMes.push(element);
             });
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -223,7 +225,9 @@ angular.module('myList', [])
               getOrderMes('get/transinfo/status', 1, { status: 2 });
             };
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -246,7 +250,9 @@ angular.module('myList', [])
           if (data.status == 101) {
             getOrderMes('get/transinfo/status', 1, { status: 3 });
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -278,7 +284,9 @@ angular.module('myList', [])
               getOrderMes('get/sellinginfos/id', 2);
             };
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -309,7 +317,9 @@ angular.module('myList', [])
               getOrderMes('get/sellinginfos/status', 2, { status: 4 });
             };
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -413,7 +423,9 @@ angular.module('myList', [])
               };
             };
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -464,7 +476,9 @@ angular.module('myList', [])
           if (data.status == 101) {
             $state.go('myOrder', { orderState: 'yes' });
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -512,7 +526,9 @@ angular.module('myList', [])
             }
           });
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -610,7 +626,9 @@ angular.module('myList', [])
           if (data.status == 101) {
             $state.go('myCar');
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-            $state.go('login')
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
           } else {
             $scope.hintText = data.message;
             $scope.hintShow = true;
@@ -779,7 +797,9 @@ angular.module('myList', [])
                 $state.go('myCar');
               };
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-              $state.go('login')
+              localStorage.removeItem('access-token');
+              localStorage.removeItem('userMessage');
+              $state.go('login');
             } else {
               $scope.hintText = data.message;
               $scope.hintShow = true;
@@ -805,7 +825,9 @@ angular.module('myList', [])
                 $state.go('myCar');
               };
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-              $state.go('login')
+              localStorage.removeItem('access-token');
+              localStorage.removeItem('userMessage');
+              $state.go('login');
             } else {
               $scope.hintText = data.message;
               $scope.hintShow = true;
@@ -889,7 +911,9 @@ angular.module('myList', [])
             }
           });
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-          $state.go('login')
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('userMessage');
+          $state.go('login');
         } else {
           $scope.hintText = data.message;
           $scope.hintShow = true;
@@ -1557,9 +1581,13 @@ angular.module('myList', [])
         getDataService.hasHeaderRequest('post', 'put/users/pwd', { password: $scope.setPwd.oPwd, newpwd: $scope.setPwd.nPwd })
           .then(function(data) {
             if (data.status == 101) {
+              localStorage.removeItem('access-token');
+              localStorage.removeItem('userMessage');
               $state.go('login');
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
-              $state.go('login')
+              localStorage.removeItem('access-token');
+              localStorage.removeItem('userMessage');
+              $state.go('login');
             } else {
               $scope.hintText = data.message;
               $scope.hintShow = true;

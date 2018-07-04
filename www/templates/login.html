@@ -1,6 +1,6 @@
-<ion-view class="searchPark">
-  <ion-content class="ion-content" overflow-scroll="false" scrollbar-y="false">
-    <div class="login">
+<ion-view class="searchPark" >
+  <ion-content class="ion-content" overflow-scroll="false" scrollbar-y="false" >
+    <div class="login" ng-if="loginShow">
       <div class="header">
         <img src="img/logo.png" alt="">
         <h3>共享停车</h3>
@@ -30,7 +30,7 @@
           <button type="button" ui-sref="regist">免费注册</button>
         </div>
       </div>
-      <div id="footer" class="hide-on-keyboard-open">
+      <div id="footer" class="hide-on-keyboard-open" ng-if="otherLogin">
         <div>
           <span></span>
           <h3>第三方登录</h3>
@@ -41,7 +41,7 @@
           <img src="img/loginweixin.png" alt="">
         </div>
       </div>
-    </div> 
+    </div>
   </ion-content>
   <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
 </ion-view>

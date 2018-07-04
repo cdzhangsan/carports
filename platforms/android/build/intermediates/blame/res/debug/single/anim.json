@@ -6,5 +6,9 @@
     {
         "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\anim\\image_pop_in.xml",
         "source": "D:\\carports\\platforms\\android\\res\\anim\\image_pop_in.xml"
+    },
+    {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\anim\\image_pop_in.xml",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\anim\\image_pop_in.xml"
     }
 ]

@@ -82,16 +82,15 @@ appModel.run(function ($rootScope, $ionicPlatform, $state, $location, $cordovaTo
       })
 
       function onComplete (data) {
-        alert('succ')
         var option = {}
         option.address = data.formattedAddress
         option.lng = data.position.lng
         option.lat = data.position.lat
+        alert(JSON.stringify(option))
         localStorage.setItem('spaceLocation', JSON.stringify(option)); // 保存定位经纬度(临时)
       }
 
       function onError (data) {
-        alert('err')
         console.log(data);
         console.log('定位失败' + data)
       }

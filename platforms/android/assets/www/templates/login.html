@@ -1,6 +1,6 @@
-<ion-view class="searchPark">
-  <ion-content class="ion-content" overflow-scroll="false" scrollbar-y="false">
-    <div class="login">
+<ion-view class="searchPark" >
+  <ion-content class="ion-content" overflow-scroll="false" scrollbar-y="false" >
+    <div class="login" ng-if="loginShow">
       <div class="header">
         <img src="img/logo.png" alt="">
         <h3>共享停车</h3>
@@ -41,7 +41,7 @@
           <img src="img/loginweixin.png" alt="">
         </div>
       </div>
-    </div> 
+    </div>
   </ion-content>
   <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
 </ion-view>

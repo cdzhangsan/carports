@@ -1,20 +1,24 @@
 angular.module('login', [])
   .controller('loginCtrl', function($scope, $state, $timeout, $ionicLoading, getDataService) { // 登录
     $scope.logdata = {
-      uname: '',
-      upwd: ''
+      uname: '18615728090',
+      upwd: 'a123456'
     }
+
     //判断用户登录状态开始
-    //   var _access_token = localStorage.getItem('access-token');
-    //   var _userMessage = localStorage.getItem('userMessage');
-    //   if(_access_token && _userMessage){
-    //     _userMessage = JSON.parse(_userMessage)
-    //     if (_userMessage.type == 5) {
-    //       $state.go('app.sharePark')
-    //     } else {
-    //       $state.go('management')
-    //     }
-    //   }
+      var _access_token = localStorage.getItem('access-token');
+      var _userMessage = localStorage.getItem('userMessage');
+      if(_access_token && _userMessage){
+        $scope.loginShow = false;
+        _userMessage = JSON.parse(_userMessage)
+        if (_userMessage.type == 5) {
+          $state.go('app.sharePark')
+        } else {
+          $state.go('management')
+        }
+      }else{
+        $scope.loginShow = true;
+      }
     //判断用户登录状态结束
 
 

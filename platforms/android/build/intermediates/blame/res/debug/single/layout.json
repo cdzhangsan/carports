@@ -16,6 +16,10 @@
         "source": "D:\\carports\\platforms\\android\\res\\layout\\actionbar_custom_view_done_discard.xml"
     },
     {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\layout\\multiselectorgrid.xml",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\layout\\multiselectorgrid.xml"
+    },
+    {
         "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\layout\\actionbar_discard_button.xml",
         "source": "D:\\carports\\platforms\\android\\res\\layout\\actionbar_discard_button.xml"
     },
@@ -28,7 +32,19 @@
         "source": "C:\\Users\\DR\\carports\\platforms\\android\\res\\layout\\actionbar_discard_button.xml"
     },
     {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\layout\\actionbar_custom_view_done_discard.xml",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\layout\\actionbar_custom_view_done_discard.xml"
+    },
+    {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\layout\\actionbar_done_button.xml",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\layout\\actionbar_done_button.xml"
+    },
+    {
         "merged": "D:\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\layout\\multiselectorgrid.xml",
         "source": "D:\\carports\\platforms\\android\\res\\layout\\multiselectorgrid.xml"
+    },
+    {
+        "merged": "C:\\work\\carports\\platforms\\android\\build\\intermediates\\res\\merged\\debug\\layout\\actionbar_discard_button.xml",
+        "source": "C:\\work\\carports\\platforms\\android\\res\\layout\\actionbar_discard_button.xml"
     }
 ]
