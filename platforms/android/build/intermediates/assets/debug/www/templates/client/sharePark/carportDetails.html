@@ -32,7 +32,7 @@
             <h2>车位评价</h2>
             <p>5分</p>
           </li>
-          <li>
+          <li ng-if="canElectric">
             <h2>充电桩</h2>
             <p>{{carportMes.charg}}</p>
           </li>
@@ -52,7 +52,7 @@
             <h2>停车单价</h2>
             <p>{{carportMes.parkfee}}元/分钟</p>
           </li>
-          <li>
+          <li ng-if="canElectric">
             <h2>充电单价</h2>
             <p>{{carportMes.chgfee}}元/分钟</p>
           </li>
@@ -67,7 +67,7 @@
           <li class="nextStep">
             <button type="button" ng-click="scribeSure()">预约</button>
           </li>
-        </ul>          
+        </ul>
       </content>
     </div>
   </ion-content>

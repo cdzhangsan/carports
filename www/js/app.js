@@ -86,7 +86,6 @@ appModel.run(function ($rootScope, $ionicPlatform, $state, $location, $cordovaTo
         option.address = data.formattedAddress
         option.lng = data.position.lng
         option.lat = data.position.lat
-        alert(JSON.stringify(option))
         localStorage.setItem('spaceLocation', JSON.stringify(option)); // 保存定位经纬度(临时)
       }
 

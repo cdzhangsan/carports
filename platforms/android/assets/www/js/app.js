@@ -86,12 +86,12 @@ appModel.run(function ($rootScope, $ionicPlatform, $state, $location, $cordovaTo
         option.address = data.formattedAddress
         option.lng = data.position.lng
         option.lat = data.position.lat
-        alert(JSON.stringify(option))
         localStorage.setItem('spaceLocation', JSON.stringify(option)); // 保存定位经纬度(临时)
       }
 
       function onError (data) {
-        console.log(data);
+        // 测试加入默认地址
+        localStorage.setItem('spaceLocation', '{"address":"四川省成都市双流区天府菁蓉中心A区","lng":104.080684,"lat":30.402627}');
         console.log('定位失败' + data)
       }
     }

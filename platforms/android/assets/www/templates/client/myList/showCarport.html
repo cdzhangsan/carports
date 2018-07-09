@@ -17,7 +17,7 @@
             <h2>车位位置</h2>
             <p>{{carport.address}}</p>
           </li>
-          <li>
+          <li ng-if="canElectric">
             <h2>充电桩型号</h2>
             <p>{{chargMes}}</p>
           </li>
@@ -43,11 +43,11 @@
             <h2>停车单价</h2>
             <input type="text" ng-blur="price()" ng-model="carport.parkfee" placeholder="元/分钟">
           </li>
-          <li>
+          <li ng-if="canElectric">
             <h2>充电单价</h2>
             <input type="text" ng-model="carport.chgfee" placeholder="元/分钟">
           </li>
-          <li>
+          <li ng-if="canElectric">
             <h2>充电服务费</h2>
             <input type="text" ng-model="carport.servfee" placeholder="元/度">
           </li>

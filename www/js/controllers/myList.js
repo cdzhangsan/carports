@@ -559,6 +559,8 @@ angular.module('myList', [])
     $scope.carCode = {}; //车牌号
     $scope.bindCar = {};
     $scope.deletBtn = false;
+    $scope.licensePlatePop = false;
+    $scope.licensePlate = ["京", "沪", "粤", "浙","川","鄂", "甘", "赣", "桂","贵", "黑", "吉", "晋","津", "辽", "鲁", "蒙","闽", "宁", "青", "琼","陕", "苏", "皖", "湘","新", "冀", "渝", "豫","云","藏", "港", "澳", "台","警","使","领","学"];
 
     $scope.frontHeight = 1.72;
     $scope.behindHeight = 1.72;
@@ -572,13 +574,8 @@ angular.module('myList', [])
       $scope.carTitle = '绑定车辆';
       $scope.deletBtn = false;
       $scope.carCode = {
-         one: '',
-           two: '',
-           third: '',
-           four: '',
-           five: '',
-           six: '',
-           seven: ''
+          one: $scope.licensePlate[0],
+           two: ''
        };
       $scope.bindCar = {
         name: '',
@@ -593,14 +590,9 @@ angular.module('myList', [])
       $scope.bindCar.name = $stateParams.carMes.name;
       $scope.bindCar.cartype = $stateParams.carMes.cartype;
       $scope.bindCar.id = $stateParams.carMes.id;
-      var platenos = $stateParams.carMes.plateno.split('');
-      $scope.carCode.one = platenos[0];
-      $scope.carCode.two = platenos[1];
-      $scope.carCode.third = platenos[2];
-      $scope.carCode.four = platenos[3];
-      $scope.carCode.five = platenos[4];
-      $scope.carCode.six = platenos[5];
-      $scope.carCode.seven = platenos[6];
+      var platenos = $stateParams.carMes.plateno;
+      $scope.carCode.one = platenos.substring(0,1);
+      $scope.carCode.two = platenos.substring(1,platenos.length);
       if ($stateParams.carMes.carpic1) {
         $scope.mycarimg.img1 = $stateParams.carMes.carpic1;
         $scope.frontImgs.push($stateParams.carMes.carpic1); //车辆前脸照片
@@ -612,14 +604,27 @@ angular.module('myList', [])
         $scope.behindShow = false;
       };
     };
-    $scope.$watch('carCode',function(v,o){
-      for(var key in $scope.carCode){
-        if($scope.carCode[key]!=''&& typeof $scope.carCode[key] !='undefined' ){
-          $scope.carCode[key] = $scope.carCode[key].toUpperCase()
-        }
-      }
-    },true)
-
+    // $scope.$watch('carCode',function(v,o){
+    //   for(var key in $scope.carCode){
+    //     if($scope.carCode[key]!=''&& typeof $scope.carCode[key] !='undefined' ){
+    //       $scope.carCode[key] = $scope.carCode[key].toUpperCase()
+    //     }
+    //   }
+    // },true)
+    $scope.toUpperCase = function(){
+      $scope.carCode.two = $scope.carCode.two.toUpperCase()
+    };
+    $scope.showLpPop = function(){
+      $scope.licensePlatePop = true;
+    };
+    $scope.chooseThis = function(x){
+      $scope.carCode.one = x;
+      console.log($scope.carCode.one);
+      $scope.licensePlatePop = false;
+    };
+    $scope.quxChoose = function(){
+      $scope.licensePlatePop = false;
+    };
     $scope.deletCar = function() { //删除车辆
       getDataService.hasHeaderRequest('post', 'destroy/carinfos/id', { id: $stateParams.carMes.id })
         .then(function(data) {
@@ -769,32 +774,42 @@ angular.module('myList', [])
 
     $scope.toBIndCar = function() {
       var carCodes = '';
-      for (code in $scope.carCode) {
-        if($scope.carCode[code]!=''){
-          carCodes += $scope.carCode[code];
-        }else{
-          $scope.hintText = '请正确填写车牌号码';
-          $scope.hintShow = true;
-          hintHide();
-          return false;
-        }
+      // for (code in $scope.carCode) {
+      //   if($scope.carCode[code]!=''){
+      //     carCodes += $scope.carCode[code];
+      //   }else{
+      //     $scope.hintText = '请正确填写车牌号码';
+      //     $scope.hintShow = true;
+      //     hintHide();
+      //     return false;
+      //   }
+      //
+      // };
+      if($scope.carCode.two.length<6){
+        $scope.hintText = '请正确填写车牌号码';
+        $scope.hintShow = true;
+        hintHide();
+        return false;
+      }else{
+        carCodes += $scope.carCode.one;
+        carCodes += $scope.carCode.two;
+      }
 
-      };
       $scope.bindCar.plateno = carCodes;
       if ($stateParams.carType === 'add') {
         getDataService.hasHeaderRequest('post', 'post/carinfos', $scope.bindCar)
           .then(function(data) {
             if (data.status == 101) {
-              if ($scope.mycarimg.img1 != $scope.frontImgs[0]) {
+              if ($scope.frontImgs[0] &&($scope.mycarimg.img1 != $scope.frontImgs[0])) {
                 uploadImg($scope.frontImgs, '001', data.id);
-              } else {
-                $state.go('myCar');
-              };
+                return false;
+              }
               if ($scope.mycarimg.img2 != $scope.behindImgs[0]) {
                 uploadImg($scope.behindImgs, '002', data.id);
-              } else {
+                return false;
+              }
                 $state.go('myCar');
-              };
+
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
               localStorage.removeItem('access-token');
               localStorage.removeItem('userMessage');
@@ -813,16 +828,17 @@ angular.module('myList', [])
         getDataService.hasHeaderRequest('post', 'post/carinfos/id', $scope.bindCar)
           .then(function(data) {
             if (data.status == 101) {
-              if ($scope.mycarimg.img1 != $scope.frontImgs[0]) {
-                uploadImg($scope.frontImgs, '001', $scope.bindCar.id);
-              } else {
-                $state.go('myCar');
+              if ($scope.frontImgs[0] && ($scope.mycarimg.img1 != $scope.frontImgs[0])) {
+                  uploadImg($scope.frontImgs, '001', $scope.bindCar.id);
+                return false;
               };
-              if ($scope.mycarimg.img2 != $scope.behindImgs[0]) {
+              if ($scope.behindImgs[0] && ($scope.mycarimg.img2 != $scope.behindImgs[0])) {
                 uploadImg($scope.behindImgs, '002', $scope.bindCar.id);
-              } else {
-                $state.go('myCar');
-              };
+                return false;
+              }
+
+              $state.go('myCar');
+
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
               localStorage.removeItem('access-token');
               localStorage.removeItem('userMessage');
@@ -1066,6 +1082,7 @@ angular.module('myList', [])
             } else if (data.status == 401 || data.status == 402 || data.status == 403) {
               $state.go('login')
             } else {
+              selectType.splice(0, selectType.length);
               $scope.hintText = data.message;
               $scope.hintShow = true;
               hintHide();
@@ -1127,6 +1144,12 @@ angular.module('myList', [])
       let usermes = JSON.parse(localStorage.getItem('userMessage'));
       $scope.mycarports.phone = usermes.mobile;
       $scope.mycarports.name = usermes.name;
+      if(!$scope.mycarports.id){
+        $scope.hintText = "请选择正确车位！"
+        $scope.hintShow = true;
+        hintHide();
+        return false;
+      }
       console.log($scope.mycarports);
       getDataService.hasHeaderRequest('post', 'post/meparkingslots', $scope.mycarports)
         .then(function(data) {
@@ -1158,7 +1181,7 @@ angular.module('myList', [])
     $scope.tatol = ''; //停车预计费用
     $scope.sselt = '选择开始时间';
     $scope.eselt = '选择结束时间';
-
+    $scope.canElectric = true;
     let slot_id = ''; //车位id
     if ($stateParams.type === 'mod') { //修改订单过来
       $scope.carport.id = $stateParams.orderId;
@@ -1185,6 +1208,7 @@ angular.module('myList', [])
             $scope.eselt = result.etime;
           };
           if (result.staketype) {
+            $scope.canElectric = true;
             if (result.state) {
               var stakeStype;
               if (result.staketype == 1) {
@@ -1199,6 +1223,7 @@ angular.module('myList', [])
               $scope.chargMes = '异常';
             };
           } else {
+            $scope.canElectric = false;
             $scope.chargMes = '无';
           };
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {

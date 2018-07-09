@@ -13,11 +13,11 @@ var app = angular.module('starter')
     //center:标题居中，left:标题居左，right:标题居右
     /*$ionicConfigProvider.platform.ios.navBar.alignTitle('center');
     $ionicConfigProvider.platform.android.navBar.alignTitle('center');
-    
+
     //设置返回按钮属性
     $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
     $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
-    
+
     //设置设备控件
     $ionicConfigProvider.platform.ios.views.transition('ios');
     $ionicConfigProvider.platform.android.views.transition('android');*/
@@ -93,6 +93,7 @@ var app = angular.module('starter')
       })
       .state('subscribeSuccess', { //预约成功
         url: '/subscribeSuccess',
+        params:{carportMes:null,id:null},
         templateUrl: 'templates/client/sharePark/subscribeSuccess.html',
         controller: 'subscribeSuccessCtrl'
       })

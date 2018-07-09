@@ -77,6 +77,9 @@ angular.module('sharePark', [])
 
       function onError(err) {
         // alert('定位失败' + JSON.stringify(err));
+        // 测试加入默认地址
+        // localStorage.setItem('spaceLocation', '{"address":"四川省成都市双流区天府菁蓉中心A区","lng":104.080684,"lat":30.402627}');
+        // creatMap();
         $scope.hintText = '定位失败';
         $scope.hintShow = true;
         hintHide();
@@ -834,6 +837,7 @@ angular.module('sharePark', [])
             var location = JSON.parse(localStorage.getItem('spaceLocation')); //用户当前位置信息
             var lnglat = new AMap.LngLat(location.lng, location.lat);
             var km = lnglat.distance([result.x, result.y]) / 1000;
+            $scope.parkinfosSave = result
             $scope.parkMes.range = km.toFixed(2);
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
             localStorage.removeItem('access-token');
@@ -856,6 +860,7 @@ angular.module('sharePark', [])
       $state.go('parkDetails')
     };
     $scope.carportMes = {}; //车位信息
+    $scope.canElectric = false;
     getDataService.hasHeaderRequest('post', 'get/sellinginfos/slotid', { id: $stateParams.id }) //$scope.parkMes.id
       .then(function(data) {
         if (data.status == 102) {
@@ -869,8 +874,10 @@ angular.module('sharePark', [])
           $scope.carportMes.chgfee = result.chgfee;
           $scope.carportMes.overtimeinterval = result.overtimeinterval;
           $scope.carportMes.total = result.parkfee * $scope.carportMes.duration;
+
           var chargType, chargPower, charguse;
           if (result.staketype) {
+            $scope.canElectric = true;
             if (result.state) {
               if (result.staketype == 1) {
                 chargType = '直流';
@@ -884,6 +891,7 @@ angular.module('sharePark', [])
               $scope.carportMes.charg = '异常';
             };
           } else {
+            $scope.canElectric = false;
             $scope.carportMes.charg = '无';
           };
         } else if (data.status == 401 || data.status == 402 || data.status == 403) {
@@ -903,7 +911,8 @@ angular.module('sharePark', [])
       })
 
     $scope.scribeSure = function() { //去预约页面
-      $state.go('subscribeSure', { carportMes: $scope.carportMes, id: $stateParams.id });
+      $scope.carportMes.parkinfosSave = $scope.parkinfosSave;
+      $state.go('subscribeSure', { carportMes: $scope.carportMes, id: $stateParams.id});
     }
 
     function calculateHours(startTime, endTime) { //计算停车时长
@@ -925,14 +934,13 @@ angular.module('sharePark', [])
     $scope.backCarport = function() { //返回车位详情
       $state.go('carportDetails', { id: $stateParams.id });
     };
-    $scope.carportMes = $stateParams.carportMes;
 
+    $scope.carportMes = $stateParams.carportMes;
     $scope.carusersub = { total: 0 }; //用户预约信息
     if ($scope.carportMes.slotid) {
       console.log({ slotid: $scope.carportMes.id });
       getDataService.hasHeaderRequest('post', 'get/parkingslots', { slotid: $scope.carportMes.id })
         .then(function(data) {
-          console.log(data);
           if (data.status == 102) {
             $scope.carusersub.slotid = data.data[0].id;
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
@@ -1059,7 +1067,6 @@ angular.module('sharePark', [])
     });
 
     $scope.zhifubao = function() { //支付宝支付
-      console.log($scope.carusersub);
       $scope.carusersub.stime = document.getElementById('carportStartTime').value;
       $scope.carusersub.etime = document.getElementById('carportEndTime').value;
       var nowTime = new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, ''); //当前系统时间
@@ -1068,7 +1075,8 @@ angular.module('sharePark', [])
       getDataService.hasHeaderRequest('post', 'traninfos/payment', $scope.carusersub)
         .then(function(data) {
           if (data.status == 101) {
-            $state.go('subscribeSuccess')
+            console.log($scope.carportMes)
+            $state.go('subscribeSuccess',{ carportMes: $scope.carportMes, id: $stateParams.id })
           } else if (data.status == 401 || data.status == 402 || data.status == 403) {
             localStorage.removeItem('access-token');
             localStorage.removeItem('userMessage');
@@ -1107,7 +1115,11 @@ angular.module('sharePark', [])
       }, 1000);
     }
   })
-  .controller('subscribeSuccessCtrl', function($scope, $ionicActionSheet) { //预约成功
+  .controller('subscribeSuccessCtrl', function($scope, $ionicActionSheet, $stateParams,$http) { //预约成功
+    var parkingLat = $stateParams.carportMes.parkinfosSave.y;
+    var parkingLng = $stateParams.carportMes.parkinfosSave.x;
+    var parkingName = $stateParams.carportMes.parkinfosSave.name;
+  
     var schemeBaidu, schemeGaode, platform;
     if (device.platform === 'iOS') { //如果是ios系统执行
       platform = 'ios';
@@ -1140,14 +1152,14 @@ angular.module('sharePark', [])
     function gaodeSuccessCallback() { //高德地图回调函数
       let sApp;
       if (platform === 'ios') {
-        startApp.set("iosamap://path?sourceApplication=applicationName&sname=我的位置&&dlat=40.07717&dlon=116.314094&dname=B&dev=0&t=0");
+        startApp.set("iosamap://path?sourceApplication=applicationName&sname=我的位置&&dlat="+parkingLat+"&dlon="+parkingLng+"&dname=B&dev=0&t=0");
       } else {
         sApp = startApp.set({ /* params */
           "action": "ACTION_VIEW",
           "category": "CATEGORY_DEFAULT",
           "type": "text/css",
           "package": "com.autonavi.minimap",
-          "uri": "amapuri://route/plan/?sid=BGVIS1&sname=我的位置&dlat=40.07717&dlon=116.314094&dname=B&dev=0&t=0",
+          "uri": "amapuri://route/plan/?sid=BGVIS1&sname=我的位置&dlat="+parkingLat+"&dlon="+parkingLng+"&dname="+parkingName+"&dev=0&t=0",
           "flags": ["FLAG_ACTIVITY_CLEAR_TOP", "FLAG_ACTIVITY_CLEAR_TASK"],
           "intentstart": "startActivity",
         }, { /* extras */
@@ -1168,30 +1180,55 @@ angular.module('sharePark', [])
     };
 
     function baiduSuccessCallback() { //百度地图回调函数
-      let sApp
-      if (platform === 'ios') {
-        startApp.set("baidumap://map/navi?location=40.057023, 116.307852&src=push&type=BLK&src=webapp.line.yourCompanyName.yourAppName");
-      } else {
-        sApp = startApp.set({ /* params */
-          "action": "ACTION_VIEW",
-          "category": "CATEGORY_DEFAULT",
-          "type": "text/css",
-          "package": "com.baidu.BaiduMap",
-          "uri": "bdapp://map/direction?origin=我的位置&destination=中关村&mode=driving&region=北京",
-          "flags": ["FLAG_ACTIVITY_CLEAR_TOP", "FLAG_ACTIVITY_CLEAR_TASK"],
-          "intentstart": "startActivity",
-        }, { /* extras */
-          "EXTRA_STREAM": "extraValue1",
-          "extraKey2": "extraValue2"
-        });
-      };
+      $http({
+        method: 'GET',
+        url: 'http://api.map.baidu.com/geoconv/v1/?coords='+parkingLng+','+parkingLat+'&from=3&to=5&ak=D6e04beeeeb4f69ab2cf38382c41b9c9'
+      }).then(function successCallback(res) {
 
-      sApp.start(function() { /* success */
-        console.log("OK");
-      }, function(error) { /* fail */
-        alert(error);
+        let sApp
+        if (platform === 'ios') {
+          startApp.set("baidumap://map/navi?location="+res.data.result[0].y+", "+res.data.result[0].x+"&src=push&type=BLK&src=webapp.line.yourCompanyName.yourAppName");
+        } else {
+          sApp = startApp.set({ /* params */
+            "action": "ACTION_VIEW",
+            "category": "CATEGORY_DEFAULT",
+            "type": "text/css",
+            "package": "com.baidu.BaiduMap",
+            "uri": "bdapp://map/direction?destination=latlng:"+res.data.result[0].y+","+res.data.result[0].x+"|name:"+parkingName+"&mode=driving&src=车桩位",
+            "flags": ["FLAG_ACTIVITY_CLEAR_TOP", "FLAG_ACTIVITY_CLEAR_TASK"],
+            "intentstart": "startActivity",
+          }, { /* extras */
+            "EXTRA_STREAM": "extraValue1",
+            "extraKey2": "extraValue2"
+          });
+        };
+
+        sApp.start(function() { /* success */
+          console.log("OK");
+        }, function(error) { /* fail */
+          alert(error);
+        });
+
+        // 请求成功执行代码
+      }, function errorCallback(response) {
+        // 请求失败执行代码
       });
+
     };
+
+    function changeToBaidu(parkingLng,parkingLat){
+      $http({
+        method: 'GET',
+        url: 'http://api.map.baidu.com/geoconv/v1/?coords='+parkingLng+','+parkingLat+'&from=3&to=5&ak=D6e04beeeeb4f69ab2cf38382c41b9c9'
+      }).then(function successCallback(res) {
+        console.log(res.data.result[0])
+        return res.data.result[0]
+
+        // 请求成功执行代码
+      }, function errorCallback(response) {
+        // 请求失败执行代码
+      });
+    }
 
     function baiduErrorCallback() { //百度地图回调函数
       alert('未检测到百度地图');

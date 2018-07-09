@@ -19,14 +19,10 @@
       <form ng-submit="toBIndCar(carForm)" name="carForm" novalidate>
         <header>
           <h3>请输入您的车牌号</h3>
-          <div>
-            <input type="text" ng-value="carCode.one" ng-model="carCode.one" minlength="1" maxlength="1" placeholder="京" required >
-            <input type="text" ng-value="carCode.two" ng-model="carCode.two" minlength="1" maxlength="1" placeholder="*" required>
-            <input type="text" ng-value="carCode.third" ng-model="carCode.third" minlength="1" maxlength="1" placeholder="*" required>
-            <input type="text" ng-value="carCode.four" ng-model="carCode.four" minlength="1" maxlength="1" placeholder="*" required>
-            <input type="text" ng-value="carCode.five" ng-model="carCode.five" minlength="1" maxlength="1" placeholder="*" required>
-            <input type="text" ng-value="carCode.six" ng-model="carCode.six" minlength="1" maxlength="1" placeholder="*" required>
-            <input type="text" ng-value="carCode.seven" ng-model="carCode.seven" minlength="1" maxlength="1" placeholder="*" required>
+          <div class="licensePlate">
+            <!--<select  ng-model="carCode.one" required ng-options="x for x in licensePlate"></select>-->
+            <input type="button" ng-model="carCode.one" ng-value="carCode.one" ng-click="showLpPop()" class="firstCode">
+            <input type="text" ng-change="toUpperCase()" ng-value="carCode.two" ng-model="carCode.two" maxlength="7"  required >
           </div>
         </header>
         <div class="content">
@@ -94,6 +90,15 @@
     </div>
   </ion-content>
   <span class="rowarn" ng-if="hintShow">{{hintText}}</span>
+  <div class="licensePlateMain" ng-if="licensePlatePop">
+    <div class="licensePlateBg"></div>
+    <div class="licensePlateSelect">
+      <ul>
+        <li ng-repeat="x in licensePlate" ng-click="chooseThis(x)">{{x}}</li>
+        <li class="sureCp" ng-click="quxChoose()">取消</li>
+      </ul>
+    </div>
+  </div>
 </ion-view>
 <script id="bigimg" type="text/ng-template">
 <ion-popover-view>

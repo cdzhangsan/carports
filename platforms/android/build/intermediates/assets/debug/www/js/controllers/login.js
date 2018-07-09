@@ -4,7 +4,7 @@ angular.module('login', [])
       uname: '18615728090',
       upwd: 'a123456'
     }
-
+    $scope.otherLogin = false;      //第三方登录功能开关
     //判断用户登录状态开始
       var _access_token = localStorage.getItem('access-token');
       var _userMessage = localStorage.getItem('userMessage');
