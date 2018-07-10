@@ -78,8 +78,8 @@ angular.module('sharePark', [])
       function onError(err) {
         // alert('定位失败' + JSON.stringify(err));
         // 测试加入默认地址
-        // localStorage.setItem('spaceLocation', '{"address":"四川省成都市双流区天府菁蓉中心A区","lng":104.080684,"lat":30.402627}');
-        // creatMap();
+        localStorage.setItem('spaceLocation', '{"address":"四川省成都市双流区天府菁蓉中心A区","lng":104.080684,"lat":30.402627}');
+        creatMap();
         $scope.hintText = '定位失败';
         $scope.hintShow = true;
         hintHide();
@@ -1119,7 +1119,7 @@ angular.module('sharePark', [])
     var parkingLat = $stateParams.carportMes.parkinfosSave.y;
     var parkingLng = $stateParams.carportMes.parkinfosSave.x;
     var parkingName = $stateParams.carportMes.parkinfosSave.name;
-  
+
     var schemeBaidu, schemeGaode, platform;
     if (device.platform === 'iOS') { //如果是ios系统执行
       platform = 'ios';
@@ -1216,19 +1216,7 @@ angular.module('sharePark', [])
 
     };
 
-    function changeToBaidu(parkingLng,parkingLat){
-      $http({
-        method: 'GET',
-        url: 'http://api.map.baidu.com/geoconv/v1/?coords='+parkingLng+','+parkingLat+'&from=3&to=5&ak=D6e04beeeeb4f69ab2cf38382c41b9c9'
-      }).then(function successCallback(res) {
-        console.log(res.data.result[0])
-        return res.data.result[0]
-
-        // 请求成功执行代码
-      }, function errorCallback(response) {
-        // 请求失败执行代码
-      });
-    }
+    
 
     function baiduErrorCallback() { //百度地图回调函数
       alert('未检测到百度地图');

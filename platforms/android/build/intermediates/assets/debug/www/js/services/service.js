@@ -1,6 +1,6 @@
 angular.module('MyServices', [])
   .factory('getDataService', ['$q', '$http','$state', function ($q, $http,$state) { // 数据请求
-    // var thePort = 'https://47.104.131.237'; // IP和端口
+    // var thePort = 'http://192.168.20.101:3000'; // IP和端口
      var thePort = 'http://39.108.238.158:3000'; // IP和端口
 
     var noHeaderRequest = function (method, urlCode, paramets) { // url为接口路径、paramets为向后台传递参数
@@ -37,7 +37,7 @@ angular.module('MyServices', [])
         })
       return promise
     }
-   
+
     return {
       noHeaderRequest: noHeaderRequest,
       hasHeaderRequest: hasHeaderRequest

@@ -3,7 +3,7 @@ angular.module('myList', [])
   .controller('myInOutCtrl', function($scope) { //我的收支
 
   })
-  .controller('myOrderCtrl', function($scope, $stateParams, $ionicPopover, $state, $timeout, getDataService) { //我的订单
+  .controller('myOrderCtrl', function($scope, $stateParams,$ionicActionSheet, $http, $ionicPopover, $state, $timeout, getDataService) { //我的订单
     $scope.userType = '车主';
     $scope.carUser = true;
     $scope.selectType = 'publish'; //选择的状态
@@ -203,6 +203,121 @@ angular.module('myList', [])
           hintHide();
         });
     };
+
+    var parkingLat = '';
+    var parkingLng = '';
+    var parkingName = '';
+
+      var schemeBaidu, schemeGaode, platform;
+      if (device.platform === 'iOS') { //如果是ios系统执行
+        platform = 'ios';
+        schemeBaidu = 'baidu://'; //百度地图
+        schemeGaode = 'iosamap://'; //高德地图
+      } else if (device.platform === 'Android') { //如果是Android系统执行
+        platform = 'android';
+        schemeBaidu = 'com.baidu.BaiduMap'; //百度地图
+        schemeGaode = 'com.autonavi.minimap'; //高德地图
+      };
+
+      $scope.navigatorFun = function(order, event) { //订单导航
+
+          event.stopPropagation();
+          console.log(order);
+          console.log(event);
+           parkingLat = order.lat;
+           parkingLng = order.lng;
+           parkingName = order.name;
+        $ionicActionSheet.show({
+          cancelText: '取消',
+          buttons: [
+            { text: '高德地图' },
+            { text: '百度地图' }
+          ],
+          buttonClicked: function(index) {
+            if (index === 0) {
+              appAvailability.check(schemeGaode, gaodeSuccessCallback, gaodeErrorCallback); //检测手机上是否装有高德地图APP
+            } else {
+              appAvailability.check(schemeGaode, baiduSuccessCallback, baiduErrorCallback); //检测手机上是否装有百度地图APP
+            };
+            return true;
+          }
+        });
+      };
+
+      function gaodeSuccessCallback() { //高德地图回调函数
+        let sApp;
+        if (platform === 'ios') {
+          startApp.set("iosamap://path?sourceApplication=applicationName&sname=我的位置&&dlat="+parkingLat+"&dlon="+parkingLng+"&dname=B&dev=0&t=0");
+        } else {
+          sApp = startApp.set({ /* params */
+            "action": "ACTION_VIEW",
+            "category": "CATEGORY_DEFAULT",
+            "type": "text/css",
+            "package": "com.autonavi.minimap",
+            "uri": "amapuri://route/plan/?sid=BGVIS1&sname=我的位置&dlat="+parkingLat+"&dlon="+parkingLng+"&dname="+parkingName+"&dev=0&t=0",
+            "flags": ["FLAG_ACTIVITY_CLEAR_TOP", "FLAG_ACTIVITY_CLEAR_TASK"],
+            "intentstart": "startActivity",
+          }, { /* extras */
+            "EXTRA_STREAM": "extraValue1",
+            "extraKey2": "extraValue2"
+          });
+        }
+
+        sApp.start(function() { /* success */
+          console.log("OK");
+        }, function(error) { /* fail */
+          alert(error);
+        });
+      };
+
+      function gaodeErrorCallback() { //高德地图回调函数
+        alert('未检测到高德地图');
+      };
+
+      function baiduSuccessCallback() { //百度地图回调函数
+        $http({
+          method: 'GET',
+          url: 'http://api.map.baidu.com/geoconv/v1/?coords='+parkingLng+','+parkingLat+'&from=3&to=5&ak=D6e04beeeeb4f69ab2cf38382c41b9c9'
+        }).then(function successCallback(res) {
+          let sApp
+          if (platform === 'ios') {
+            startApp.set("baidumap://map/navi?location="+res.data.result[0].y+", "+res.data.result[0].x+"&src=push&type=BLK&src=webapp.line.yourCompanyName.yourAppName");
+          } else {
+            sApp = startApp.set({ /* params */
+              "action": "ACTION_VIEW",
+              "category": "CATEGORY_DEFAULT",
+              "type": "text/css",
+              "package": "com.baidu.BaiduMap",
+              "uri": "bdapp://map/direction?destination=latlng:"+res.data.result[0].y+","+res.data.result[0].x+"|name:"+parkingName+"&mode=driving&src=车桩位",
+              "flags": ["FLAG_ACTIVITY_CLEAR_TOP", "FLAG_ACTIVITY_CLEAR_TASK"],
+              "intentstart": "startActivity",
+            }, { /* extras */
+              "EXTRA_STREAM": "extraValue1",
+              "extraKey2": "extraValue2"
+            });
+          };
+
+          sApp.start(function() { /* success */
+
+            console.log("OK");
+          }, function(error) { /* fail */
+            alert(error);
+          });
+
+          // 请求成功执行代码
+        }, function errorCallback(response) {
+          // 请求失败执行代码
+        });
+
+      };
+
+
+
+      function baiduErrorCallback() { //百度地图回调函数
+        alert('未检测到百度地图');
+      };
+
+
 
     $scope.step_car = function(type, order, event) { //停车确认、停车完成
       event.stopPropagation();

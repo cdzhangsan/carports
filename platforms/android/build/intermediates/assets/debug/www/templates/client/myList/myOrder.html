@@ -90,7 +90,7 @@
             </aside>
           </content>
           <footer>
-            <button type="button" ng-if="navigator">导航</button>
+            <button type="button" ng-if="navigator" ng-click="navigatorFun(order,$event)">导航</button>
             <button type="button" ng-if="communicat">即时通讯</button>
             <button type="button" ng-if="modprice">修改金额</button>
             <button type="button" ng-if="stSure" ng-click="step_car('sure',order,$event)">停车确认</button>

@@ -60,7 +60,7 @@ appModel.run(function ($rootScope, $ionicPlatform, $state, $location, $cordovaTo
   }, 101)
 })
   .controller('indexCtrl', function ($scope, $rootScope) {
-    // $rootScope.baseUrl = 'http://192.168.20.187:3000'
+    // $rootScope.baseUrl = 'http://192.168.20.101:3000'
     $rootScope.baseUrl='http://39.108.238.158:3000'
     getUSerLocation()
     function getUSerLocation () { // 定位用户位置
