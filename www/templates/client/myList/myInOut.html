@@ -11,23 +11,23 @@
         <div class="headCard">
           <div class="headCard-time">
             <h3>时间范围</h3>
-            <a href="">
-              一个月
+            <a href="" ng-click="choiceDate($event)">
+              {{dateName}}
               <img src="img/pullDoenWhite.png" alt="">
             </a>
           </div>
           <div class="headCard-out">
             <h3>支出(元)</h3>
-            <p>1231.23</p>
+            <p>{{income}}</p>
           </div>
           <div class="headCard-in">
             <h3>收入(元)</h3>
-            <p>334.23</p>
+            <p>{{expend}}</p>
           </div>
           <div class="headCard-type">
             <h3>收入类别</h3>
-            <a href="">
-              全部
+            <a href="" ng-click="choiceIncome($event)">
+              {{incomeCategoryName}}
               <img src="img/pullDoenWhite.png" alt="">
             </a>
           </div>
@@ -35,13 +35,13 @@
       </header>
       <content class="inoutList">
         <ul>
-            <li>
+            <li ng-repeat="item in inOutList">
               <div class="inoutListContent">
                 <div>
-                  <h3>北京市昌平区龙域中心物业公司</h3>
-                  <p>2018-01-05 17:42:33</p>
+                  <h3>{{item.name}}</h3>
+                  <p>{{item.date}}</p>
                 </div>
-                <h2>+30</h2>
+                <h2>{{item.type==1?'+':'-'}}{{item.money}}</h2>
               </div>
             </li>
         </ul>
@@ -49,3 +49,37 @@
     </div>
   </ion-content>
 </ion-view>
+<script id="datePopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closedatePopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="suredatePopover(option)" ng-repeat="option in dateOptions">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio"/>
+            <span class="leader">
+               {{option.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+<script id="incomePopover" type="text/ng-template">
+  <ion-popover-view>
+    <div class="alerBg" ng-click="closeIncomePopover()"></div>
+    <div class="checkCharge">
+      <div class="checkChargeLead">
+        <div class="optionList">
+          <label class="item item-radio" ng-click="sureIncomePopover(option)" ng-repeat="option in incomeOptions">
+            <input name="radio-group" ng-value="option" ng-model="option" type="radio"/>
+            <span class="leader">
+               {{option.name}}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

@@ -1,8 +1,96 @@
 angular.module('myList', [])
 
-  .controller('myInOutCtrl', function($scope) { //我的收支
+  .controller('myInOutCtrl', function($scope,$http, getDataService,$timeout, $ionicPopover) { //我的收支
+    $scope.income = 0;
+    $scope.expend = 0;
+    $scope.inOutList=[{"name":"北京市昌平区金域国际物业公司","date":"2018-06-01 09：23","type":1,"money":"12"}
+    ,{"name":"科学城天府菁蓉中心A区","date":"2018-06-01 09：23","type":2,"money":"23.5"}
+    ,{"name":"海昌路菁蓉","date":"2018-06-01 09：23","type":1,"money":"0.9"}]
+    $scope.dateOptions = [{"name":"一个月","value":"1"},{"name":"三个月","value":"2"},{"name":"半年","value":"3"},{"name":"一年","value":"4"}]
+    $scope.incomeOptions = [{"name":"全部","value":"0"},{"name":"收入","value":"1"},{"name":"支出","value":"2"}]
+
+    $scope.dateName = "一个月";
+    $scope.dateVal ="1";
+    $scope.incomeCategoryName = "全部";
+    $scope.incomeCategoryVal ="0";
+
+    getInoutData();
+
+
+    function getInoutData(){
+      getDataService.hasHeaderRequest('post', 'get/balanceinfos', {type:$scope.incomeCategoryVal,duration:$scope.dateVal})
+        .then(function(data) {
+          if (data.status == 102) {
+            $scope.income = data.data.income;
+            $scope.expend = data.data.expend;
+            $scope.inOutList = data.data.list;
+          } else if (data.status == 401 || data.status == 402 || data.status == 403) {
+            localStorage.removeItem('access-token');
+            localStorage.removeItem('userMessage');
+            $state.go('login');
+          } else {
+            $scope.hintText = data.message;
+            $scope.hintShow = true;
+            hintHide();
+          }
+        }).catch(function(err) {
+        $scope.hintText = err.message;
+        $scope.hintShow = true;
+        hintHide();
+      })
+    }
+
+    function hintHide() {
+      $timeout(function() {
+        $scope.hintShow = false;
+      }, 1000);
+    }
+
+
+
+    $scope.datePopover = $ionicPopover.fromTemplateUrl('datePopover', { //选择查询时间范围
+      scope: $scope
+    }).then(function(popop) {
+      $scope.datePopover = popop;
+    });
+    $scope.choiceDate = function(event) { //打开选择框
+      $scope.datePopover.show(event);
+    };
+    $scope.closedatePopover = function() { //关闭选择框
+      $scope.datePopover.hide();
+    };
+    $scope.suredatePopover = function(option) { //确认选择框
+      $scope.dateName = option.name;
+      $scope.dateVal = option.value;
+      $scope.datePopover.hide();
+      getInoutData();
+    };
+
+    $scope.incomePopover = $ionicPopover.fromTemplateUrl('incomePopover', { //选择查询收入类别
+      scope: $scope
+    }).then(function(popop) {
+      $scope.incomePopover = popop;
+    });
+    $scope.choiceIncome = function(event) { //打开选择框
+      $scope.incomePopover.show(event);
+    };
+    $scope.closeIncomePopover = function() { //关闭选择框
+      $scope.incomePopover.hide();
+    };
+    $scope.sureIncomePopover = function(option) { //确认选择框
+      $scope.incomeCategoryName = option.name;
+      $scope.incomeCategoryVal = option.value;
+      $scope.incomePopover.hide();
+      getInoutData();
+    };
+
+
+
 
   })
+
+
+
   .controller('myOrderCtrl', function($scope, $stateParams,$ionicActionSheet, $http, $ionicPopover, $state, $timeout, getDataService) { //我的订单
     $scope.userType = '车主';
     $scope.carUser = true;
@@ -1116,6 +1204,7 @@ angular.module('myList', [])
       }, 1000);
     };
   })
+
   .controller('bindCarportCtrl', function($scope, $ionicPopover, $state, $timeout, getDataService) { //绑定车位
     $scope.showCarport = false;
     $scope.mycarports = { //绑定车位是需要提交的信息
@@ -1428,6 +1517,26 @@ angular.module('myList', [])
   })
   .controller('myCustomerCtrl', function($scope) { //我的客服
 
+  })
+  .controller('myMessageCtrl', function($scope) { //我的消息
+    $scope.myMsgList = [{
+      "channel":"admin",
+      "name":"",
+      "id":"msg23342ss",
+      "photo":"",
+      "time":"2018-07-24 12:34:11",
+      "state":1,
+      "content":"您已经确认停车！"
+    }
+      ,{
+        "channel":"user",
+        "name":"张三",
+        "id":"msg23342ss",
+        "photo":"http://jeego01.oss-cn-shanghai.aliyuncs.com/1530588008338.jpg",
+        "time":"2018-07-24 12:34:11",
+        "state":1,
+        "content":"你好,请问你的停车位现在可以出租吗？"
+      }]
   })
   .controller('mySetCtrl', function($scope, getDataService, $rootScope, $ionicLoading, $timeout, $state, $ionicPopup, $stateParams, $cordovaImagePicker, $cordovaCamera, $ionicActionSheet) { //我的设置
     $scope.userMess = JSON.parse(localStorage.getItem('userMessage')); //存储在本地的用户信息

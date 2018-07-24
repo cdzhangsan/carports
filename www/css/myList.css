@@ -900,6 +900,72 @@
   margin-top: 0.35rem;
   border-radius: 0;
 }
+/*我的消息*/
+.messageList {
+  width: 100%;
+  padding: 0 0.14rem;
+  padding-bottom: 0.4rem;
+}
+
+.messageList .myMsgLi{
+  width: 100%;
+  height: 1.2rem;
+  background: #fff;
+  margin-top: 0.1rem;
+  box-shadow: 0 2px 2px #d8dada;
+  padding: 0.1rem;
+  position: relative;
+}
+.messageList .userHeader{
+  width: 0.9rem;
+  height:0.9rem;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  position: absolute;
+  top: 0.15rem;
+  left: 0.2rem;
+}
+.messageList .userHeader img{
+  width: 100%;
+  height: 100%;
+}
+.messageList  .newMsgPoint{
+  background: #ff525c;
+  width: 0.1rem;
+  height: 0.1rem;
+  border-radius: 0.05rem;
+  position: absolute;
+  top: 0.1rem;
+  left: 1rem;
+  z-index: 100;
+}
+.messageList .rightC{
+  width: 4.2rem;
+  position: absolute;
+  top: 0.15rem;
+  left: 1.5rem;
+}
+.messageList .rightC .userName{
+  font-size: 0.25rem;
+}
+.messageList .rightC .msgTime{
+  font-size: 0.15rem;
+  color: #cbcbcb;
+  position: absolute;
+  right: 0.1rem;
+  top: 0;
+}
+.messageList .rightC .msgContent{
+  width: 3.5rem;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  color: #adadad;
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  font-size: 0.2rem;
+}
 
 /*我的客服*/
 

@@ -612,12 +612,6 @@ angular.module('management', [])
       } else if (!$scope.person.mobile) {
         $scope.hintText = '手机号不能为空';
         $scope.hintShow = true;
-      } else if (!$scope.person.pwd) {
-        $scope.hintText = '密码不能为空';
-        $scope.hintShow = true;
-      } else if (!pwdRegexp.test($scope.person.pwd)) {
-        $scope.hintText = '密码格式有误(6-10位，数字与字母组合)'
-        $scope.hintShow = true
       } else if (!$scope.person.officeid) {
         $scope.hintText = '归属公司不能为空';
         $scope.hintShow = true;
@@ -626,6 +620,13 @@ angular.module('management', [])
         $scope.hintShow = true;
       } else {
         if ($stateParams.userType === 'add') {
+         if (!$scope.person.pwd) {
+            $scope.hintText = '密码不能为空';
+            $scope.hintShow = true;
+          } else if (!pwdRegexp.test($scope.person.pwd)) {
+            $scope.hintText = '密码格式有误(6-10位，数字与字母组合)'
+            $scope.hintShow = true
+          }
           getDataService.hasHeaderRequest('post', 'post/users', $scope.person)
             .then(function(data) {
               if (data.status == 101) {

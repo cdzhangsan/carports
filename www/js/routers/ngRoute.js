@@ -152,7 +152,11 @@ var app = angular.module('starter')
         templateUrl: 'templates/client/myList/showCarport.html',
         controller: 'showCarportCtrl'
       })
-
+      .state('myMessage', { //我的消息
+        url: '/myMessage',
+        templateUrl: 'templates/client/myList/myMessage.html',
+        controller: 'myMessageCtrl'
+      })
       .state('myCustomer', { //我的客服
         url: '/myCustomer',
         templateUrl: 'templates/client/myList/myCustomer.html',
